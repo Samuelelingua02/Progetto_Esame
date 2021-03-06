@@ -1,0 +1,477 @@
+/*
+Template Name: FoodEque
+File Name: responsive.css
+Author Name: ThemeVault
+Author URI: http://www.themevault.net/
+License URI: http://www.themevault.net/license/
+*/
+
+@media(min-width: 1200px) and (max-width: 1260px){
+    #myCarousel2 .carousel-control.right, #myCarousel3 .carousel-control.right, #myCarousel6 .carousel-control.right{
+        right: -15px;
+    }
+    #myCarousel2 .carousel-control.left, #myCarousel3 .carousel-control.left, #myCarousel6 .carousel-control.left {
+        left: -15px;
+    }
+
+}
+@media(min-width: 992px) and (max-width: 1199px){
+    .margin-l {
+        margin-left: 45px;
+    }
+    .subscribe-form input {
+        width: 240px;
+    }
+    .subscribe-info > h2 {
+        font-size: 32px;
+        letter-spacing: 8px;
+    } 
+}
+@media(max-width: 1199px){
+    .logo {
+        width: 15%;
+    }
+    .banner .carousel-caption{
+        top: 15%;
+    }
+    .banner .carousel-caption{
+        top: 10%;
+    }
+    .banner .carousel-caption-inner {
+        padding: 50px;
+    }
+    .welcome-block, .special-block, .food-block, .service-block, .book-block, .counter-block, .staff-block, .subscribe-block, .contact-block{
+        padding-top: 80px;
+    }
+    .height-135{
+        height: 80px;
+    }
+    .welcome-block-full-image > div{
+        margin-top: 80px;
+    }
+
+    #myCarousel2 .carousel-control.right, #myCarousel3 .carousel-control.right, #myCarousel6 .carousel-control.right{
+        right: -15px;
+    }
+    #myCarousel2 .carousel-control.left, #myCarousel3 .carousel-control.left, #myCarousel6 .carousel-control.left {
+        left: -15px;
+    }
+
+}
+@media(min-width: 768px) and (max-width: 991px){
+    .navbar-default .navbar-nav li + li{
+        margin-left: 5px;
+    }
+    .margin-l {
+        margin-left: 0;
+    }
+}
+@media(max-width: 991px){
+
+    .logo {
+        width: 10%;
+    }
+    h4{
+        font-size: 18px;
+    }
+    .footer-block ul li{
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+    .footer-block ul li p{
+        font-size: 15px;
+    }
+    .banner .carousel-caption-inner > h1 {
+        font-size: 50px;
+        letter-spacing: 5px;
+        line-height: 80px;
+    }
+    .banner .carousel-caption-inner {
+        padding: 30px 40px;
+    }
+    .welcome-block, .special-block, .food-block, .service-block, .book-block, .counter-block, .staff-block, .subscribe-block, .contact-block{
+        padding-top: 60px;
+    }
+    .height-135{
+        height: 60px;
+    }
+    .add-top-space, .book-block-full-image, .contact-block-full-image, footer{
+        margin-top: 60px;
+    }
+    .book-block-full-image, .counter-full-image, .subscribe-full-image, .contact-block-full-image{
+        padding: 60px 0;
+    }
+    .welcome-block-full-image > div{
+        margin-top: 60px;
+        width: 50%;
+    }
+    .welcome-block-full-image > div > p{
+        font-size: 15px;
+    }
+    .food-image a.info, .event-image a.info, .staff-image a.info{
+        font-size: 18px;
+    }
+    .text-head > h1{
+        font-size: 30px;
+    }
+    .nav > li > a, .copyright{
+        font-size: 17px;
+    }
+    .counter{
+        font-size: 40px;
+    }
+    .counter-full-image p {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+    .food-image{
+        margin-bottom: 30px;
+        max-width: 268px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #contactForm .form-control{
+        height: 55px;
+        font-size: 16px;
+    }
+    .subscribe-info > h2 {
+        font-size: 26px;
+        letter-spacing: 4px;
+    }
+    /*    .special-block .col-sm-4 + .col-sm-4, .staff-block .col-sm-3 + .col-sm-3 {
+            padding-left: 0;
+        }*/
+    .special-block .col-sm-4 , .staff-block .col-sm-3 {
+        // padding-left: 0;
+    }
+    .subscribe-form input {
+        height: 40px;
+        width: 235px;
+    }
+    .subscribe-form form button {
+        margin-left: 20px;
+    }
+    .submit-btn {
+        font-size: 17px;
+        padding: 5px;
+    }
+    .contact-block #contactForm .form-control {
+        height: 50px;
+        margin-bottom: 35px;
+    }
+    .event-image{
+        min-height: auto;
+    }
+
+
+}
+@media(max-width: 767px){
+    .logo-mobile{
+        text-align: center
+    }
+    .logo-mobile img{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-top p{
+        letter-spacing: 1px;
+    }
+    h2{
+        font-size: 19px;
+    }
+    .title-name h1 {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+    h4{
+        font-size: 16px;
+    }
+    .service-title {
+        letter-spacing: 3px;
+        margin-top: 20px;
+    }
+    .service-desc {
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 23px;
+        margin: 15px 0;
+    }
+    .service-image {
+        margin-top: 10px;
+    }
+    .blog-views > h4 {
+        letter-spacing: 2px;
+        margin: 20px 0 10px;
+    }
+    .blog-views > p, .footer-block ul li p{
+        font-size: 14px;
+    }
+    .event-desc > p {
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-align: left;
+    }
+    .subscribe-full-image{
+        text-align: center;
+    }
+    .event-desc{
+        margin: 15px 0;
+    }
+    .margin-t15{
+        margin-top: 20px;
+    }
+    .book-block-full-image, .counter-full-image, .subscribe-full-image, .contact-block-full-image {
+        padding: 40px 0;
+    }
+    .counter {
+        font-size: 35px;
+        letter-spacing: 5px;
+        margin-bottom: 10px;
+    }
+    .counter-block .col-xs-12 + .col-xs-12 {
+        margin-top: 25px;
+    }
+    .counter-full-image p{
+        font-size: 15px;
+    }
+    .navbar-toggle {
+        background: #e01931;
+        border: none;
+        border-radius: 0;
+        margin-top: -50px;
+    }
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background-color: #000;
+    }
+    .staff-block .col-xs-3 {
+        padding: 0 2px;
+    }
+    .margin-l{
+        margin-left: -15px;
+        text-align: left;
+    }
+    .navbar-default .navbar-nav li + li {
+        margin-left: 0px;
+    }
+    header .navbar-nav.navbar-right{
+        text-align: left;
+    }
+    .navbar-default .navbar-nav > li > a{
+        font-size: 15px;
+        line-height: 45px;
+    }
+    .food-image a.info, .event-image a.info, .staff-image a.info, .contact-block #contactForm .form-control {
+        font-size: 15px;
+    }
+    .staff-image a.info{
+        letter-spacing: 1px;
+        font-size: 14px;
+    }
+    .subscribe-info > h2 {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+    .contact-block #contactForm .form-control {
+        height: 40px;
+        margin-bottom: 25px;
+    }
+    .footer-block > h4{
+        margin-bottom: 20px;
+    }
+    .subscribe-form input {
+        height: 37px;
+        width: 180px;
+    }
+    .subscribe-form{
+        margin-top: 25px;
+    }
+    .welcome-block, .special-block, .food-block, .service-block, .book-block, .counter-block, .staff-block, .subscribe-block, .contact-block{
+        padding-top: 30px;
+    }
+    .welcome-block-full-image > div {
+        margin-top: 30px;
+        width: 80%;
+    }
+    .height-135{
+        height: 40px;
+    }
+    .add-top-space, .book-block-full-image, .contact-block-full-image, footer{
+        margin-top: 40px;
+    }
+    .feedback-content {
+        padding: 0 15px;
+    }
+    .feedback-box > p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .feedback-content a{
+        padding: 7px 10px;
+    }
+    .feedback-content span{
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+    #contactForm .form-control {
+        font-size: 15px;
+        height: 40px;
+    }
+    #contactForm #message, #contactForm #message1 {
+        height: 130px;
+        padding-top: 10px;
+    }
+    .btn-button {
+        font-size: 15px;
+        letter-spacing: 2px;
+        padding: 6px 10px;
+    }
+    form{
+        margin: 0;
+    }
+    .welcome-block-full-image > div > p {
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 24px;
+        margin-bottom: 25px;
+    }
+    .read-more {
+        font-size: 17px;
+        font-weight: 400;
+        padding: 5px 10px;
+    }
+    .text-head > h1 {
+        font-size: 19px;
+        letter-spacing: 3px;
+    }
+    .height-70{
+        height: 40px;
+    }
+    .food-image{
+        margin-bottom: 15px;
+    }
+    /*banner*/
+    .banner .carousel-caption{
+        top: 4%;
+    }
+    .banner .carousel-caption-inner {
+        padding: 5px;
+    }
+    .banner .carousel-caption-inner > h1 {
+        font-size: 22px;
+        letter-spacing: 2px;
+        line-height: 30px;
+    }
+    .banner .carousel-indicators li{
+        height: 10px;
+        width: 15px;
+    }
+    .banner .carousel-indicators .active{
+        width: 15px;
+        height: 15px;
+    }
+    .footer-block ul li {
+        font-size: 14px;
+        line-height: 32px;
+    }
+    .footer-block-main .col-xs-12 + .col-xs-12 {
+        margin-top: 30px;
+    }
+    footer .social-grid {
+        padding: 5px 0 10px;
+    }
+    footer .social-grid.text-right a{
+        height: 32px;
+        width: 32px;
+    }
+    .social-grid.text-right a i {
+        font-size: 14px;
+        line-height: 28px;
+    }
+    .special-block .col-xs-4 {
+        padding: 0 2px;
+    }
+    .remove-both-padd{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .food-image a.info, .event-image a.info, .staff-image a.info{
+        letter-spacing: 2px;
+    }
+    .special-block .food-image{
+        margin-bottom: 0 !important;
+    }
+    /*ABOUT*/
+    .about-info {
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 24px;
+        margin-top: 30px;
+        text-align: left;
+    }
+    .about .event-image {
+        max-width: 277px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 15px;
+    }
+    .text-extra-large{
+        font-size: 150px;
+    }
+
+}
+@media(min-width: 640px) and (max-width: 767px){
+
+}
+@media(min-width: 580px) and (max-width: 767px){
+    .event-image img{
+        width: 100%;
+    }
+}
+@media(min-width: 480px) and (max-width: 767px){
+    .nav > li > a {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 4px;
+        padding: 10px 5px;
+    }
+    .footer-block-main .width-50, .counter-block .col-xs-12, .food-block .col-xs-12, .about .service-block .col-xs-12{
+        width: 50%;
+    }
+    .counter-block .col-xs-12:nth-of-type(2) {
+        margin-top: 0;
+    }
+    .footer-block-main .col-xs-12 + .col-xs-12 {
+        margin-top: 0px;
+    }
+
+
+}
+@media(max-width: 640px){
+    .special-block .carousel-control img, .staff-block .carousel-control img {
+        width: 25px;
+    }
+}
+@media(max-width: 479px){
+    .center-pills {
+        display: block;
+        text-align: left;
+    }
+    .nav-pills > li {
+        float: none;
+    }
+    .nav > li > a, .copyright{
+        font-size: 15px;
+    }
+    .nav > li > a{
+        border: none;
+    }
+    .special-block .carousel-control img, .staff-block .carousel-control img {
+        width: 20px;
+    }
+
+}
