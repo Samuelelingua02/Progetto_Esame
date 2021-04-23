@@ -1,0 +1,132 @@
+[
+	{
+		"_id" : "1",
+		"foto" : "cottomaionese.jpg",
+		"descrizione" : "Cotto & Maionese",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "2",
+		"foto" : "cottoformaggio.jpg",
+		"descrizione" : "Cotto & Formaggio EDAMER",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "3",
+		"foto" : "crudomozzarella.jpg",
+		"descrizione" : "Crudo & Mozzarella",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "4",
+		"foto" : "salame.jpg",
+		"descrizione" : "Salame",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "5",
+		"foto" : "arrostotacchino.jpg",
+		"descrizione" : "Arrosto di Tacchino & S. Tonnata",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "6",
+		"foto" : "pomodoromozzarella.jpg",
+		"descrizione" : "Pomodoro & Mozzarella",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "7",
+		"foto" : "stracchinorucola.jpg",
+		"descrizione" : "Stracchino & Rucola",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "8",
+		"foto" : "tonnoPinsalata.jpg",
+		"descrizione" : "Tonno, Pomodoro & Insalata",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "9",
+		"foto" : "speckbrie.jpg",
+		"descrizione" : "Speck & Brie",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "10",
+		"foto" : "uovosalsarosa.jpg",
+		"descrizione" : "Uovo, Salsa Rosa & Insalata",
+		"tipo" : "panino",
+		"prezzo" : 1.30
+	},
+	{
+		"_id" : "11",
+		"foto" : "primavera.jpg",
+		"descrizione" : "Cotto, Maionese, Insalata & Mozzarella",
+		"tipo" : "panino",
+		"prezzo" : 1.50
+	},
+	{
+		"_id" : "12",
+		"foto" : "hotdog.jpg",
+		"descrizione" : "Hot Dog (Maionese & Ketchup)",
+		"tipo" : "panino",
+		"prezzo" : 1.80
+	},
+	{
+		"_id" : "13",
+		"foto" : "pollo.jpg",
+		"descrizione" : "Pollo",
+		"tipo" : "panino",
+		"prezzo" : 1.80
+	},
+	{
+		"_id" : "14",
+		"foto" : "briochescioccolato.jpg",
+		"descrizione" : "Brioches Cioccolato",
+		"tipo" : "dolce",
+		"prezzo" : 1.00
+	},
+	{
+		"_id" : "15",
+		"foto" : "briochescrema.jpg",
+		"descrizione" : "Brioches Crema",
+		"tipo" : "dolce",
+		"prezzo" : 1.00
+	},
+	{
+		"_id" : "16",
+		"foto" : "triangolo.jpg",
+		"descrizione" : "Triangolo Cioccolato",
+		"tipo" : "dolce",
+		"prezzo" : 1.00
+	},
+	{
+		"_id" : "17",
+		"foto" : "fagottinocioccolato.jpg",
+		"descrizione" : "Fagottino al Cioccolato",
+		"tipo" : "dolce",
+		"prezzo" : 1.00
+	},
+	{
+		"_id" : "18",
+		"foto" : "ciambella.jpg",
+		"descrizione" : "Ciambella",
+		"tipo" : "dolce",
+		"prezzo" : 1.00
+	},
+]
+
+https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101257.12284776446!2d-77.56330202084071!3d37.52477641775529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b111095799c9ed%3A0xbfd83e6de2423cc5!2sRichmond%2C+VA%2C+USA!5e0!3m2!1sen!2sin!4v1488891294599
+
+<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=vallauri%20fossano&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://putlocker-is.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">how to add a google map to wordpress</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
