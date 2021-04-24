@@ -39,7 +39,7 @@ const { create } = require('errors');
 
 // Google Auth
 const {OAuth2Client} = require('google-auth-library');
-const CLIENT_ID = '333642631602-h2l1m29lfb5c1d0dta76nvv4so4bjeo4.apps.googleusercontent.com'
+const CLIENT_ID = '759412275936-lgq1qlsiq1ap6s9b1j7punmemeacdtig.apps.googleusercontent.com'
 const client = new OAuth2Client(CLIENT_ID);
 
 // Online RSA Key Generator
@@ -64,7 +64,7 @@ httpsServer.listen(port, '127.0.0.1', function() {
 
 // Middleware
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
@@ -133,11 +133,17 @@ app.post('/login', (req,res)=>{
 
 })
 
-app.get('/profile', checkAuthenticated, (req, res)=>{
+/*app.get('/profile', checkAuthenticated, (req, res)=>{
     let user = req.user;
     res.render('profile', {user});
-})
+    
+})*/
 
+app.get('/Redirect', checkAuthenticated, (req,res)=>{
+    let user = req.user;
+    res.redirect('Index.html');
+    res.send(user);
+})
 app.get('/protectedRoute', checkAuthenticated, (req,res)=>{
     res.send('This route is protected')
 })

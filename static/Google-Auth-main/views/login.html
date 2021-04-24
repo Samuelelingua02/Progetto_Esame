@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="333642631602-h2l1m29lfb5c1d0dta76nvv4so4bjeo4.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="759412275936-lgq1qlsiq1ap6s9b1j7punmemeacdtig.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Login</title>
 </head>
@@ -39,7 +39,8 @@
             console.log('Signed in as: ' + xhr.responseText);
             if(xhr.responseText == 'success'){
                 signOut();
-                location.assign('/profile')
+                location.assign('/Redirect');
+               //window.location.href = "./static/index.html";
             }
         };
         xhr.send(JSON.stringify({token : id_token}));
