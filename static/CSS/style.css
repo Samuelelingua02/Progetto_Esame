@@ -1392,3 +1392,13 @@ mark, .mark {
          position: relative;
        }
         
+       #card {
+        padding: 5%;
+        border: 5px solid black;
+        background-color: black;
+       }
+       #card:hover {
+        background-color: white;
+        border: 5px solid lightgray;
+        opacity: 1;
+       }

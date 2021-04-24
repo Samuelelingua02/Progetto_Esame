@@ -141,8 +141,8 @@ app.post('/login', (req,res)=>{
 
 app.get('/Redirect', checkAuthenticated, (req,res)=>{
     let user = req.user;
-    res.redirect('Index.html');
     res.send(user);
+    res.redirect('Index.html');
 })
 app.get('/protectedRoute', checkAuthenticated, (req,res)=>{
     res.send('This route is protected')
@@ -150,10 +150,30 @@ app.get('/protectedRoute', checkAuthenticated, (req,res)=>{
 
 app.get('/logout', (req, res)=>{
     res.clearCookie('session-token');
-    res.redirect('/login')
-
+    res.redirect('index.html');
 })
 
+app.get('/api/CaricaPezzi', function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('prodotti');
+            collection.find({}).sort({
+                _id: 1
+            }).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
 
 function checkAuthenticated(req, res, next){
 
