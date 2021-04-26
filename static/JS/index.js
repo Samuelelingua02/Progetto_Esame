@@ -1,3 +1,4 @@
+"use strict"
 $(document).ready(function () {  
     let callbackLogin = sendRequestNoCallback("/Redirect","GET");
     callbackLogin.done(function(user){
@@ -19,12 +20,13 @@ $(document).ready(function () {
 
     let caricaCard = sendRequestNoCallback("/api/CaricaPezzi","GET");
     caricaCard.done(function(data){
-        caricaProd(data);
+        caricaProd(data.data);
         console.log(data);
     });
 });
 function caricaProd(data){
     let divIniziale = $("#divIniziale");
+    alert(data.length);
     for(let i=0;i<data.length;i++){
         let div = $("<div></div>");
         div.attr("id","card");
@@ -33,9 +35,37 @@ function caricaProd(data){
         div2.attr("class","food-image");
         div.append(div2);
         let img =$("<img>");
+        img.attr("class","img-responsive");
         div2.append(img);
         let div3 = $("<div></div>");
+        div3.attr("class","overlay");
         div2.append(div3);
+        let a = $("<a></a>");
+        a.attr("class","info-pop");
+        div3.append(a);
+        let img1 = $("<img>");
+        img1.attr("alt","1");
+        img1.attr("class","img-responsive");
+        img1.attr("src","images/Home/"+data[i].foto);
+        img1.attr("style","display: none");
+        a.append(img1);
+        let i = $("<i></i>");
+        i.attr("aria-hidden","true");
+        i.attr("class","fa fa-plus-square-o");
+        a.append(i);
+        let h6 = $("<h6></h6>");
+        h6.attr("class","help-block text-danger");
+        h6.html(data[i].descrizione);
+        div2.append(h6);
+        let h61 = $("<h6></h6>");
+        h61.attr("class","help-block text-danger");
+        h61.html(data[i].prezzo+" €");
+        div2.append(h61);
+        let btn = $("<button></button>");
+        btn.attr("class","btn btn-primary btn-lg btn-round");
+        btn.attr("type","submit");
+        btn.html("AGGIUGI A ORDINE");
+        div2.append(btn);
     }
 
 }
