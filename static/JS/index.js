@@ -80,6 +80,7 @@ $(document).ready(function () {
                     let btn = $("<button></button>");
                     btn.attr("class","btn btn-primary btn-lg btn-round");
                     btn.attr("type","submit");
+                    btn.attr("id",data.data[j]._id);
                     btn.html("AGGIUGI A ORDINE");
                     div.append(btn);
             }
@@ -134,8 +135,18 @@ function caricaProd(data){
         let btn = $("<button></button>");
         btn.attr("class","btn btn-primary btn-lg btn-round");
         btn.attr("type","submit");
+        btn.attr("id",data[j]._id);
         btn.html("AGGIUGI A ORDINE");
+        btn.on("click",function(){
+            aggiungiOrdine(this.id,data);
+        });
         div.append(btn);
     }
 
+}
+function aggiungiOrdine(id,dati){
+    let ordina = sendRequestNoCallback("/api/caricaOrdine","POST",{id:id});
+    ordina.done(function(data){
+        alert("Operazione effetuata!!");
+    });
 }
