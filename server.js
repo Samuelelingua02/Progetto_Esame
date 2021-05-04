@@ -175,6 +175,26 @@ app.get('/api/CaricaPezzi', function (req, res, next) {
     });
 });
 
+app.get('/api/CaricaDolci', function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('prodotti');
+            collection.find({tipo:"dolce"}).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
 function checkAuthenticated(req, res, next){
 
     let token = req.cookies['session-token'];
