@@ -217,6 +217,53 @@ app.post('/api/caricaOrdine',checkAuthenticated, function (req, res, next) {
     });
 });
 
+app.get('/api/visualizzaCarrello',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('ordini');
+            let user = req.user;
+            console.log(user.name);
+            collection.find({"_idUtente":user.name}).toArray( function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
+app.post('/api/chargeCart2',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('prodotti');
+            let prodotto = req.body.idProdotto;
+            console.log("id: "+prodotto);
+            let prod = parseInt(prodotto);
+            collection.findOne({_id:prod}), function (errQ, data) {
+                if (errQ){
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                    console.log("Errore di query porcamadonna!!");
+                }
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            }
+            client.close();
+        }
+    });
+});
+
 function checkAuthenticated(req, res, next){
 
     let token = req.cookies['session-token'];
