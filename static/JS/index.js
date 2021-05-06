@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     let aDolci = $("#ProdottiDolci");
     aDolci.on("click",function(){
-        alert("Fil gay");
+        //alert("Fil gay");
         let caricaDolci = sendRequestNoCallback("/api/CaricaDolci","GET");
         caricaDolci.done(function(data){
             console.log(data.data);
@@ -89,7 +89,7 @@ $(document).ready(function () {
 });
 function caricaProd(data){
     let divRow = $("#row");
-    alert(data.length);
+    //alert(data.length);
     for(let j=0;j<data.length;j++){
         let divIniziale = $("<div></div>");
         divIniziale.attr("class","col-lg-3 col-md-3 col-sm-4 col-xs-12");

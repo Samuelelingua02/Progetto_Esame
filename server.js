@@ -249,16 +249,17 @@ app.post('/api/chargeCart2',checkAuthenticated, function (req, res, next) {
             let prodotto = req.body.idProdotto;
             console.log("id: "+prodotto);
             let prod = parseInt(prodotto);
-            collection.findOne({_id:prod}), function (errQ, data) {
+            collection.find({_id:prod}).toArray( function (errQ, data) {
                 if (errQ){
                     error(req, res, new ERRORS.QUERY_EXECUTE({}));
                     console.log("Errore di query porcamadonna!!");
                 }
                 else {
+                    //console.log("DIOOOOOO!!1");
                     res.send({"data":data});
                     console.log(data);
                 }
-            }
+            });
             client.close();
         }
     });
