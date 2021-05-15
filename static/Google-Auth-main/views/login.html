@@ -39,8 +39,8 @@
             console.log('Signed in as: ' + xhr.responseText);
             if(xhr.responseText == 'success'){
                 signOut();
-                location.assign('/Redirect');
-               //window.location.href = "./static/index.html";
+               // location.assign('/Redirect');
+               window.location.href = "../../index.html";
             }
         };
         xhr.send(JSON.stringify({token : id_token}));

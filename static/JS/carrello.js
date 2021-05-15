@@ -41,16 +41,17 @@ function visualizza(data){
          btnE.attr("id",data[i]._id);
          btnE.attr("class","btnEliminaCarrello");
          btnE.on("click",function(){
-             alert(data[i]._id);
+             //alert(data[i]._id);
             let btnElimina = sendRequestNoCallback("/api/btnElimina","POST",{idProdotto:data[i]._id});
             btnElimina.fail(function(jqXHR,test_status,str_error){
                // error(jqXHR,test_status,str_error);
                 alert("Errore!!");
             });
-            btnElimina.done(function(data){
+            btnElimina.done(function(){
                 //localStorage.setItem("token",data.token);
                 window.location.href = "static/carrello.html";
             });
+            window.location.reload();
         });
          divRow.append(div2);
          div2.append(btnE);
@@ -98,4 +99,12 @@ function visualizza(data){
          div8.attr("class","col-sm-1");
          divRow.append(div8);
      }
+     /*let divRow1 = $("<div></div>");
+     divRow1.attr("class","row");
+     divRow1.attr("id","topTable");
+     let btnCheck = $("<button></button>");
+     btnCheck.html("CONFERMA ORDINE");
+     btnCheck.attr("class","btn btn-success");
+     divC.append(divRow1);
+     divRow1.append(btnCheck);*/
  }

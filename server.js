@@ -195,6 +195,26 @@ app.get('/api/CaricaDolci', function (req, res, next) {
     });
 });
 
+app.get('/api/caricaPanini', function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('prodotti');
+            collection.find({tipo:"panino"}).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
 app.post('/api/caricaOrdine',checkAuthenticated, function (req, res, next) {
     MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
         if (err)

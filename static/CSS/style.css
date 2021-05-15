@@ -1402,3 +1402,8 @@ mark, .mark {
         border: 5px solid lightgray;
         opacity: 1;
        }
+
+       #btnCheck{
+           margin:0 auto;
+           
+       }
