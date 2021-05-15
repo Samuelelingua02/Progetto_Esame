@@ -279,7 +279,7 @@ app.post('/api/btnElimina',checkAuthenticated, function (req, res, next) {
             collection.remove({_idUtente:user.name,idProdotto:prodotto}), function (errQ, data) {
                 if (errQ){
                     error(req, res, new ERRORS.QUERY_EXECUTE({}));
-                    console.log("Errore di query porcamadonna!!");
+                    console.log("Errore di query!!");
                 }
                 else {
                     console.log("DIOOOOOO!!1");

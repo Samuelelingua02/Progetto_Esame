@@ -5,7 +5,6 @@ $(document).ready(function(){
        // alert("figa");
         visualizza(data.data);
     });
-
 });
 
 function visualizza(data){
@@ -50,7 +49,7 @@ function visualizza(data){
             });
             btnElimina.done(function(data){
                 //localStorage.setItem("token",data.token);
-                window.location.href = "carrello.html";
+                window.location.href = "static/carrello.html";
             });
         });
          divRow.append(div2);
