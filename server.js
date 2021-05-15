@@ -265,6 +265,33 @@ app.post('/api/chargeCart2',checkAuthenticated, function (req, res, next) {
     });
 });
 
+app.post('/api/btnElimina',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('ordini');
+            let prodotto = req.body.idProdotto;
+            let user = req.user;
+            console.log(user.name);
+            console.log(prodotto);
+            collection.remove({_idUtente:user.name,idProdotto:prodotto}), function (errQ, data) {
+                if (errQ){
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                    console.log("Errore di query porcamadonna!!");
+                }
+                else {
+                    console.log("DIOOOOOO!!1");
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            }
+            client.close();
+        }
+    });
+});
+
 function checkAuthenticated(req, res, next){
 
     let token = req.cookies['session-token'];

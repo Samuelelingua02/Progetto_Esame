@@ -16,11 +16,11 @@
     border-top: 2px solid black;
 }
 
-#btnEliminaCarrello {
+.btnEliminaCarrello {
     background-color: black;
 }
 
-#btnEliminaCarrello:hover{
+.btnEliminaCarrello:hover{
     background-color: #e01931;
 }
 

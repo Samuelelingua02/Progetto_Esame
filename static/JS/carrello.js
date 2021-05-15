@@ -39,7 +39,20 @@ function visualizza(data){
          let btnE = $("<button></button>");
          btnE.html("X");
          btnE.attr("type","button");
-         btnE.attr("id","btnEliminaCarrello");
+         btnE.attr("id",data[i]._id);
+         btnE.attr("class","btnEliminaCarrello");
+         btnE.on("click",function(){
+             alert(data[i]._id);
+            let btnElimina = sendRequestNoCallback("/api/btnElimina","POST",{idProdotto:data[i]._id});
+            btnElimina.fail(function(jqXHR,test_status,str_error){
+               // error(jqXHR,test_status,str_error);
+                alert("Errore!!");
+            });
+            btnElimina.done(function(data){
+                //localStorage.setItem("token",data.token);
+                window.location.href = "carrello.html";
+            });
+        });
          divRow.append(div2);
          div2.append(btnE);
          
@@ -70,12 +83,16 @@ function visualizza(data){
          input.attr("placeholder","Quantità");
          input.attr("type","number");
          input.attr("min","1");
+         input.attr("id","qta");
          input.attr("style","color: black; text-align: center; width: 120px;");
          divRow.append(div6);
          div6.append(input);
 
          let div7 = $("<div></div>");
          div7.attr("class","col-sm-1");
+         let qta = $("#qta").val();
+         let prez = data[i].prezzo;
+         div7.html(prez*qta+" €");
          divRow.append(div7);
 
          let div8 = $("<div></div>");
