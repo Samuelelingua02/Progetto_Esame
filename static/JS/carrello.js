@@ -5,6 +5,11 @@ $(document).ready(function(){
        // alert("figa");
         visualizza(data.data);
     });
+
+    let btnCheck = $("#BtnCheckout");
+    btnCheck.on("click",function(){
+
+    });
 });
 
 function visualizza(data){
