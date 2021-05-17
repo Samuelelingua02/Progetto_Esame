@@ -80,7 +80,7 @@ $(document).ready(function () {
                     btn.attr("class","btn btn-primary btn-lg btn-round");
                     btn.attr("type","submit");
                     btn.attr("id",data.data[j]._id);
-                    btn.html("AGGIUGI A ORDINE");
+                    btn.html("AGGIUNGI A ORDINE");
                     btn.on("click",function(){
                         aggiungiOrdine(this.id,data);
                     });
@@ -150,9 +150,10 @@ $(document).ready(function () {
                  btn.attr("class","btn btn-primary btn-lg btn-round");
                  btn.attr("type","submit");
                  btn.attr("id",data.data[j]._id);
-                 btn.html("AGGIUGI A ORDINE");
+                 btn.html("AGGIUNGI A ORDINE");
                  btn.on("click",function(){
                      aggiungiOrdine(this.id,data);
+                     btn.attr("disabled","disabled");
                  });
                  div.append(btn);
          }
@@ -210,7 +211,7 @@ function caricaProd(data){
         btn.attr("class","btn btn-primary btn-lg btn-round");
         btn.attr("type","submit");
         btn.attr("id",data[j]._id);
-        btn.html("AGGIUGI A ORDINE");
+        btn.html("AGGIUNGI A ORDINE");
         btn.on("click",function(){
             aggiungiOrdine(this.id,data);
         });

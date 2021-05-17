@@ -312,6 +312,53 @@ app.post('/api/btnElimina',checkAuthenticated, function (req, res, next) {
     });
 });
 
+app.post('/api/caricaEffettuato',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('OrdiniEffettuati');
+            let prodotto = req.body.idProd;
+            let quantita = req.body.quantita;
+            let totale = req.body.totale;
+            let user = req.user;
+            let prod = parseInt(prodotto);
+            collection.insertOne({idUtente:user.name,idProdotto:prod,quantita:parseInt(quantita),prezzoTot:parseFloat(totale)}), function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            }
+            client.close();
+        }
+    });
+});
+
+app.get('/api/svuota',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('ordini');
+            let user = req.user;
+            collection.remove({_idUtente:user.name}), function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            }
+            client.close();
+        }
+    });
+});
+
+
 function checkAuthenticated(req, res, next){
 
     let token = req.cookies['session-token'];

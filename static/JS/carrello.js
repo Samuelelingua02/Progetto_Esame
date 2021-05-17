@@ -1,3 +1,5 @@
+"use strict"
+
 $(document).ready(function(){
     let visualizzaCarrello = sendRequestNoCallback("/api/visualizzaCarrello","GET");
     visualizzaCarrello.done(function(data){
@@ -6,12 +8,14 @@ $(document).ready(function(){
         visualizza(data.data);
     });
 
-    let btnCheck = $("#BtnCheckout");
-    btnCheck.on("click",function(){
-
-    });
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+    
+    myModal.on('shown.bs.modal', function () {
+      myInput.focus()
+    })
+    
 });
-
 function visualizza(data){
     for(let i=0;i<data.length;i++){
         //alert(data[i].prodotto);
@@ -28,6 +32,8 @@ function visualizza(data){
     }
 }
  function loadProd(data){
+     var qta=0;
+     var tot=0;
      let divC = $("#container");
      for(let i=0;i<data.length;i++){
          let divRow = $("<div></div>");
@@ -88,22 +94,60 @@ function visualizza(data){
          input.attr("placeholder","Quantità");
          input.attr("type","number");
          input.attr("min","1");
-         input.attr("id","qta");
+         input.attr("max","20");
+         input.attr("id","qta"+data[i]._id);
          input.attr("style","color: black; text-align: center; width: 120px;");
+         input.on("change",function(){
+            //let qta = $("#qta").val();
+            //alert(this.value);
+            //alert(this.id);
+            qta = this.value;
+            let prez = data[i].prezzo;
+            $("#"+this.id).html(parseFloat(prez*qta).toFixed(2)+" €");
+            tot = prez*qta;
+         });
          divRow.append(div6);
          div6.append(input);
 
          let div7 = $("<div></div>");
          div7.attr("class","col-sm-1");
-         let qta = $("#qta").val();
-         let prez = data[i].prezzo;
-         div7.html(prez*qta+" €");
+         div7.attr("id","tot"+data[i]._id);
+         ///div7.html(parseInt(prez*qta)+" €");
          divRow.append(div7);
 
          let div8 = $("<div></div>");
          div8.attr("class","col-sm-1");
          divRow.append(div8);
      }
+     let btnCheck = $("#BtnCheckout");
+     btnCheck.on("click",function(qta,tot){
+
+        
+         for(let j=0;j<data.length;j++){
+            let idProdotto = data[j]._id;
+            let qta1 = $("#qta"+idProdotto).val();
+            let tot1 = parseFloat(data[j].prezzo*qta1);
+            //alert(qta1);
+            //alert(tot1);
+
+            let caricaOrdineEffettuato = sendRequestNoCallback("/api/caricaEffettuato","POST",{idProd:idProdotto,quantita:qta1,totale:tot1});
+            caricaOrdineEffettuato.done(function(){
+                alert("Ordine Effettuato!!");
+            });
+
+            let svuotaOrdine = sendRequestNoCallback("/api/svuota","GET");
+            svuotaOrdine.done(function(){
+                alert("Ordine Effettuato!!");
+            });
+            window.location.reload();
+         }
+         
+         //alert(tot);
+         //alert(qta);
+         //alert("figa");
+     });
+
+     
      /*let divRow1 = $("<div></div>");
      divRow1.attr("class","row");
      divRow1.attr("id","topTable");
@@ -113,3 +157,5 @@ function visualizza(data){
      divC.append(divRow1);
      divRow1.append(btnCheck);*/
  }
+
+ 
