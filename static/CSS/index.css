@@ -16,6 +16,15 @@
     border-top: 2px solid black;
 }
 
+#topTable1 {
+    background-color: #2B2D2D;
+    padding: 2%;
+    text-align: center;
+    color: white;
+    border-top: 2px solid black;
+
+}
+
 .btnEliminaCarrello {
     background-color: black;
 }
@@ -23,5 +32,3 @@
 .btnEliminaCarrello:hover{
     background-color: #e01931;
 }
-
-Invia un messaggio in @Fetty_Fill

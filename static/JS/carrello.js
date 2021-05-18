@@ -120,7 +120,9 @@ function visualizza(data){
             //alert(this.id);
             qta = this.value;
             let prez = data[i].prezzo;
-            $("#"+this.id).html(parseFloat(prez*qta).toFixed(2)+" €");
+            let idqta = this.id.substring(5,3);
+            //alert(idqta);
+            $("#tot"+idqta).html(parseFloat(prez*qta).toFixed(2)+" €");
             tot = prez*qta;
          });
          divRow.append(div6);
