@@ -8,12 +8,24 @@ $(document).ready(function(){
         visualizza(data.data);
     });
 
-   /*var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-    
-    myModal.on('show.bs.modal', function () {
-      myInput.focus()
-    })*/
+   let myModal = $("#myModal");
+    let myInput = $("#myInput");
+    //myModal.modal({show:true});
+
+
+    /*function visualizzaModal(){
+        alert("dio");
+      myModal.modal({show:true});
+    }*/
+
+    myInput.on("click",function(){
+        myModal.modal({show:true});
+    });
+
+    $("#closeModal").on("click",function(){
+        myModal.modal('toggle');
+    })
+
    let getUser = sendRequestNoCallback("/getuser","GET");
    getUser.done(function(user){
     console.log(user);

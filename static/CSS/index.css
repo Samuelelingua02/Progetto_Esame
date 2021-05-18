@@ -32,3 +32,13 @@
 .btnEliminaCarrello:hover{
     background-color: #e01931;
 }
+
+
+/*#myModal{
+    background-color: azure;
+}*/
+
+#closeModal:hover{
+    background-color: black;
+    color: white;
+}

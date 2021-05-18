@@ -451,17 +451,17 @@ li.dropdown{
     color: #e01931;
     font-size: 45px;
 }
-.modal-dialog {
+/*.modal-dialog {
     margin: 127px auto 0;
-}
+}*/
 .imagepreview {
     margin: auto;
 }
-.modal-content {
+/*.modal-content {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
     box-shadow: none;
-}
+}*/
 button.close {
     background: #e01931;
     border: 1px solid #e01931;
