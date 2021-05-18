@@ -16,7 +16,18 @@ $(document).ready(function () {
         img.attr("height","50px");
         img.attr("class","rounded");
         h3.append(img);
+
+        
     });
+
+    let getUser = sendRequestNoCallback("/getuser","GET");
+    getUser.done(function(user){
+        if(user.name == "Samuele Lingua"){
+            //alert("Salve adminnn!!!");
+            window.location.href = "admin.html";
+        }
+    })
+    
 
     let caricaCard = sendRequestNoCallback("/api/CaricaPezzi","GET");
     caricaCard.done(function(data){

@@ -144,6 +144,12 @@ app.get('/Redirect', checkAuthenticated, (req,res)=>{
     res.send(user);
     res.redirect('Index.html');
 })
+
+app.get('/getuser', checkAuthenticated, (req,res)=>{
+    let user = req.user;
+    res.send(user);
+})
+
 app.get('/protectedRoute', checkAuthenticated, (req,res)=>{
     res.send('This route is protected')
 })

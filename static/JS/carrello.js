@@ -8,12 +8,29 @@ $(document).ready(function(){
         visualizza(data.data);
     });
 
-    var myModal = document.getElementById('myModal')
+   /*var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')
     
-    myModal.on('shown.bs.modal', function () {
+    myModal.on('show.bs.modal', function () {
       myInput.focus()
-    })
+    })*/
+   let getUser = sendRequestNoCallback("/getuser","GET");
+   getUser.done(function(user){
+    console.log(user);
+    let h3 = $("#h3");
+    h3.html("Sei loggato come "+user.name+" - ");
+    let li = $("#idLogin");
+    let a = $("<a></a>");
+    a.attr("href","/logout");
+    a.html("LOGOUT");
+    li.append(a);
+    let img = $("<img>");
+    img.attr("src",user.picture);
+    img.attr("width","50px");
+    img.attr("height","50px");
+    img.attr("class","rounded");
+    h3.append(img);
+   });
     
 });
 function visualizza(data){
@@ -140,6 +157,8 @@ function visualizza(data){
                 alert("Ordine Effettuato!!");
             });
             window.location.reload();
+
+            $("#staticBackdrop").modal("Show");
          }
          
          //alert(tot);
