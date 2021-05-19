@@ -329,8 +329,9 @@ app.post('/api/caricaEffettuato',checkAuthenticated, function (req, res, next) {
             let quantita = req.body.quantita;
             let totale = req.body.totale;
             let user = req.user;
+            let descrizione = req.body.descrizione;
             let prod = parseInt(prodotto);
-            collection.insertOne({idUtente:user.name,idProdotto:prod,quantita:parseInt(quantita),prezzoTot:parseFloat(totale)}), function (errQ, data) {
+            collection.insertOne({idUtente:user.name,idProdotto:prod,quantita:parseInt(quantita),prezzoTot:parseFloat(totale),descrizione:descrizione}), function (errQ, data) {
                 if (errQ)
                     error(req, res, new ERRORS.QUERY_EXECUTE({}));
                 else {

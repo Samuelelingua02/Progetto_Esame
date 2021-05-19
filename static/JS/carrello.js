@@ -156,12 +156,13 @@ function visualizza(data){
         
          for(let j=0;j<data.length;j++){
             let idProdotto = data[j]._id;
+            let desc = data[j].descrizione;
             let qta1 = $("#qta"+idProdotto).val();
             let tot1 = parseFloat(data[j].prezzo*qta1);
             //alert(qta1);
             //alert(tot1);
 
-            let caricaOrdineEffettuato = sendRequestNoCallback("/api/caricaEffettuato","POST",{idProd:idProdotto,quantita:qta1,totale:tot1});
+            let caricaOrdineEffettuato = sendRequestNoCallback("/api/caricaEffettuato","POST",{idProd:idProdotto,quantita:qta1,totale:tot1,descrizione:desc});
             caricaOrdineEffettuato.done(function(){
                 alert("Ordine Effettuato!!");
             });
