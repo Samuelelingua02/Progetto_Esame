@@ -1,4 +1,3 @@
-"use strict"
 $(document).ready(function(){
     let getUser = sendRequestNoCallback("/getuser","GET");
     getUser.done(function(user){
@@ -18,8 +17,9 @@ $(document).ready(function(){
         h3.append(img);
     });
 
-    let btnVisualizza = $("#visOrdini");
-    btnVisualizza.on("click",function(){
-        window.location.href = "visOrdini.html";
+    let getProdotti = sendRequestNoCallback("/api/getProdotti","GET");
+    getProdotti.done(function(data){
+        console.log(data.data);
+        alert("Dio merda i prodotti!!");
     });
 });

@@ -16,15 +16,21 @@ $(document).ready(function () {
         img.attr("height","50px");
         img.attr("class","rounded");
         h3.append(img);
-
-        
     });
 
     let getUser = sendRequestNoCallback("/getuser","GET");
     getUser.done(function(user){
-        if(user.name == "Samuele Lingua"){
+        if(user.name == "Ansel Bar"){
+            let ul = $("#drop");
             //alert("Salve adminnn!!!");
-            window.location.href = "admin.html";
+            //window.location.href = "admin.html";
+            let li = $("<li></li>");
+            let a = $("<a></a>");
+            a.attr("class","dropdown");
+            a.attr("href","admin.html");
+            a.html("AMMINISTRAZIONE");
+            ul.append(li);
+            li.append(a);
         }
     })
     
