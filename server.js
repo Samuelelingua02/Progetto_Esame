@@ -34,7 +34,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { create } = require('errors');
 
-//EJS////
+//EJS//////
 //app.set('view engine', 'ejs');
 
 // Google Auth
