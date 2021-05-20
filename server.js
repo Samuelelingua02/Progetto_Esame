@@ -34,7 +34,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { create } = require('errors');
 
-//EJS
+//EJS//
 //app.set('view engine', 'ejs');
 
 // Google Auth
@@ -59,7 +59,7 @@ httpsServer.listen(PORT, '127.0.0.1', function() {
             content = "<h1>Risorsa non trovata</h1>"
         pageNotFound = content.toString();
     });
-    console.log("Server running on port %s...",port);
+    console.log("Server running on port %s...",PORT);
 });
 
 // Middleware
