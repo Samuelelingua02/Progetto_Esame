@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "gitignore": "^0.6.0",
     "html": "^1.0.0"
   }
 }
