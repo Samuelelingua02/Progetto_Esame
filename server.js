@@ -53,7 +53,7 @@ let pageNotFound;
 const PORT = process.env.PORT || 1337;
 
 var httpsServer = HTTPS.createServer(credentials, app);
-httpsServer.listen(PORT, '127.0.0.1', function() {
+app.listen(PORT, '127.0.0.1', function() {
     fs.readFile("./static/error.html", function(err, content) {
         if (err)
             content = "<h1>Risorsa non trovata</h1>"
