@@ -20,15 +20,19 @@ $(document).ready(function(){
     let getProdotti = sendRequestNoCallback("/api/getProdotti","GET");
     getProdotti.done(function(data){
         console.log(data.data);
-        alert("Dio merda i prodotti!!");
+        //alert("Dio merda i prodotti!!");
         loadTable(data.data);
     });
+    
 });
-
+let utenti = new Array();
 function loadTable(data){
-    let divMain = $("#divMain");
+    
     for(let i=0;i<data.length;i++){
-        let table = $("<table></table>");
+        utenti[i] = data[i].idUtente;
+        let user = data[i].idUtente;
+        
+        /*let table = $("<table></table>");
         table.attr("class","table");
         divMain.append(table);
         let thead = $("<thead></thead>");
@@ -49,9 +53,11 @@ function loadTable(data){
         th3.html("Quantità");
         tr.append(th3);
 
+        
+
         let th4 = $("<th></th>");
         th4.attr("scope","col");
-        th4.html("Prezzo");
+        th4.html("Pagamento");
         tr.append(th4);
         thead.append(tr);
         table.append(thead);
@@ -63,6 +69,11 @@ function loadTable(data){
         th5.html(i);
         tr1.append(th5);
 
+        let th6 = $("<th></th>");
+        th6.attr("scope","col");
+        th6.html("Prezzo");
+        tr.append(th6);
+
         let td6 = $("<td></td>");
         td6.html(data[i].descrizione);
         tr1.append(td6);
@@ -71,11 +82,161 @@ function loadTable(data){
         td7.html(data[i].quantita);
         tr1.append(td7);
 
+        let td9 = $("<td></td>");
+        if(data[i].pagamentoSatispay){
+            td9.html("Satispay");
+        }else
+        {
+            td9.html("Contanti");
+        }
+        
+        tr1.append(td9);
+
         let td8 = $("<td></td>");
         td8.html(parseFloat(data[i].prezzoTot).toFixed(2)+"€");
         tr1.append(td8);
 
         tbody.append(tr1);
-        table.append(tbody);
+        table.append(tbody);*/
+    }
+    let utentiGOD = new Array();
+    utentiGOD = utenti.filter(function(ele, pos){
+        return utenti.indexOf(ele) == pos;
+    });
+    //alert("Array filtrato: "+utentiGOD);
+
+    for(let i=0;i<utentiGOD.length;i++){
+        let user = utentiGOD[i];
+        //alert(user);
+        let getProducts = sendRequestNoCallback("/api/getProducts","POST",{utente:user});
+        getProducts.done(function(data){
+            console.log(data.data);
+            loadTable2(data.data); 
+        });
+    }
+}
+
+function loadTable2(data,utent){
+    let j=0;
+    for(let i=0;i<data.length;i++){
+        //alert(data[i].descrizione);
+        j++;
+
+        if(i>0){
+            let divMain = $("#divMain");
+            let table = $("<table></table>");
+            table.attr("class","table");
+            divMain.append(table);
+            let tbody = $("<tbody></tbody>");
+            let tr1 = $("<tr></tr>");
+
+            let th5 = $("<th></th>");
+            th5.attr("scope","row");
+            th5.html(i);
+            tr1.append(th5);
+
+            let td6 = $("<td></td>");
+            td6.html(data[i].descrizione);
+            tr1.append(td6);
+    
+            let td7 = $("<td></td>");
+            td7.html(data[i].quantita);
+            tr1.append(td7);
+    
+            let td9 = $("<td></td>");
+            if(data[i].pagamentoSatispay=="true"){
+                td9.html("Satispay");
+            }else
+            {
+                td9.html("Contanti");
+            }
+            
+            tr1.append(td9);
+    
+            let td8 = $("<td></td>");
+            td8.html(parseFloat(data[i].prezzoTot).toFixed(2)+"€");
+            tr1.append(td8);
+    
+            tbody.append(tr1);
+            table.append(tbody);
+
+        }else if(i==0){
+            let divMain = $("#divMain");
+            let table = $("<table></table>");
+            table.attr("class","table");
+            table.attr("id",j);
+            divMain.append(table);
+            let thead = $("<thead></thead>");
+            let tr = $("<tr></tr>");
+    
+            let th1 = $("<th></th>");
+            th1.attr("scope","col");
+            th1.html("#");
+            tr.append(th1);
+    
+            let th2 = $("<th></th>");
+            th2.attr("scope","col");
+            th2.html("Ordine di : "+data[i].idUtente);
+            tr.append(th2);
+    
+            let th3 = $("<th></th>");
+            th3.attr("scope","col");
+            th3.html("Quantità");
+            tr.append(th3);
+    
+            let th4 = $("<th></th>");
+            th4.attr("scope","col");
+            th4.html("Pagamento");
+            tr.append(th4);
+            thead.append(tr);
+            table.append(thead);
+            let tbody = $("<tbody></tbody>");
+            let tr1 = $("<tr></tr>");
+    
+            let th5 = $("<th></th>");
+            th5.attr("scope","row");
+            th5.html(i);
+            tr1.append(th5);
+    
+            let th6 = $("<th></th>");
+            th6.attr("scope","col");
+            th6.html("Prezzo");
+            tr.append(th6);
+
+            
+    
+            let td6 = $("<td></td>");
+            td6.html(data[i].descrizione);
+            tr1.append(td6);
+    
+            let td7 = $("<td></td>");
+            td7.html(data[i].quantita);
+            tr1.append(td7);
+    
+            let td9 = $("<td></td>");
+            if(data[i].pagamentoSatispay=="true"){
+                td9.html("Satispay");
+            }else
+            {
+                td9.html("Contanti");
+            }
+            
+            tr1.append(td9);
+    
+            let td8 = $("<td></td>");
+            td8.html(parseFloat(data[i].prezzoTot).toFixed(2)+"€");
+            tr1.append(td8);
+
+            let td10 = $("<th></th>")
+            let btn = $("<button></button>");
+            btn.attr("class","btn btn-outline-success");
+            btn.html("ORDINE PRONTO");
+            td10.append(btn);
+            tr.append(td10);
+    
+            tbody.append(tr1);
+            table.append(tbody);
+        }
+        
     }
 }

@@ -1,5 +1,5 @@
 "use strict"
-
+let pagamentoSatispay=false;
 $(document).ready(function(){
     let visualizzaCarrello = sendRequestNoCallback("/api/visualizzaCarrello","GET");
     visualizzaCarrello.done(function(data){
@@ -20,6 +20,18 @@ $(document).ready(function(){
 
     myInput.on("click",function(){
         myModal.modal({show:true});
+        //pagamentoSatispay = false;
+        let imgSati = $("#imgSati");
+        imgSati.on("click",function(){
+            alert("Paga con satispay!");
+            pagamentoSatispay=true;
+        });
+
+        let imgCash = $("#imgCash");
+        imgCash.on("click",function(){
+            alert("Paga con cash!");
+            pagamentoSatispay=false;
+        });
     });
 
     $("#closeModal").on("click",function(){
@@ -152,7 +164,7 @@ function visualizza(data){
      }
      let btnCheck = $("#BtnCheckout");
      btnCheck.on("click",function(qta,tot){
-
+        
         
          for(let j=0;j<data.length;j++){
             let idProdotto = data[j]._id;
@@ -162,7 +174,7 @@ function visualizza(data){
             //alert(qta1);
             //alert(tot1);
 
-            let caricaOrdineEffettuato = sendRequestNoCallback("/api/caricaEffettuato","POST",{idProd:idProdotto,quantita:qta1,totale:tot1,descrizione:desc});
+            let caricaOrdineEffettuato = sendRequestNoCallback("/api/caricaEffettuato","POST",{idProd:idProdotto,quantita:qta1,totale:tot1,descrizione:desc,pagamento:pagamentoSatispay});
             caricaOrdineEffettuato.done(function(){
                 alert("Ordine Effettuato!!");
             });

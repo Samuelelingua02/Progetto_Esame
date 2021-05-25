@@ -50,10 +50,10 @@ const credentials = {"key":privateKey, "cert":certificate};
 // avvio server
 const TIMEOUT = 300; // 60 SEC
 let pageNotFound;
-const PORT = process.env.PORT || 1337;
+const PORT = 1337;
 
 var httpsServer = HTTPS.createServer(credentials, app);
-app.listen(PORT, '127.0.0.1', function() {
+httpsServer.listen(PORT, '127.0.0.1', function() {
     fs.readFile("./static/error.html", function(err, content) {
         if (err)
             content = "<h1>Risorsa non trovata</h1>"
@@ -330,8 +330,9 @@ app.post('/api/caricaEffettuato',checkAuthenticated, function (req, res, next) {
             let totale = req.body.totale;
             let user = req.user;
             let descrizione = req.body.descrizione;
+            let pagamento = req.body.pagamento;
             let prod = parseInt(prodotto);
-            collection.insertOne({idUtente:user.name,idProdotto:prod,quantita:parseInt(quantita),prezzoTot:parseFloat(totale),descrizione:descrizione}), function (errQ, data) {
+            collection.insertOne({idUtente:user.name,idProdotto:prod,quantita:parseInt(quantita),prezzoTot:parseFloat(totale),descrizione:descrizione,pagamentoSatispay:pagamento}), function (errQ, data) {
                 if (errQ)
                     error(req, res, new ERRORS.QUERY_EXECUTE({}));
                 else {
@@ -375,6 +376,29 @@ app.get('/api/getProdotti',checkAuthenticated, function (req, res, next) {
             let user = req.user;
             console.log(user.name);
             collection.find().toArray( function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
+app.post('/api/getProducts',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('OrdiniEffettuati');
+            let utent = req.body.utente;
+            console.log(utent);
+            //console.log(user.name);
+            collection.find({idUtente:utent}).toArray( function (errQ, data) {
                 if (errQ)
                     error(req, res, new ERRORS.QUERY_EXECUTE({}));
                 else {
