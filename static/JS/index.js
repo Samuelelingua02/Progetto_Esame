@@ -16,6 +16,22 @@ $(document).ready(function () {
         img.attr("height","50px");
         img.attr("class","rounded");
         h3.append(img);
+
+        let checkMail = sendRequestNoCallback("/api/checkMail","POST",{Mail:user.email});
+        checkMail.done(function(data){
+            console.log(data.data);
+            if(data.data.length==0){
+                alert("Dio merda ho aggiunto la mail perche mancava!");
+                let email = user.email;
+                let saveMail = sendRequestNoCallback("/api/salvaMail","POST",{Mail:email,utente:user.name});
+                saveMail.done(function(data){
+                    alert("Mail godddata!");
+                });
+            }
+        });
+
+
+        
     });
 
     let getUser = sendRequestNoCallback("/getuser","GET");

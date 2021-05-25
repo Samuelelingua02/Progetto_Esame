@@ -202,8 +202,6 @@ function loadTable2(data,utent){
             th6.attr("scope","col");
             th6.html("Prezzo");
             tr.append(th6);
-
-            
     
             let td6 = $("<td></td>");
             td6.html(data[i].descrizione);
@@ -230,6 +228,32 @@ function loadTable2(data,utent){
             let td10 = $("<th></th>")
             let btn = $("<button></button>");
             btn.attr("class","btn btn-outline-success");
+            btn.attr("id",data[i].idUtente);
+            btn.on("click",function(){
+                alert(this.id);
+                let username = this.id;
+                let getProducts = sendRequestNoCallback("/api/getProducts","POST",{utente:username});
+                getProducts.done(function(data){
+                    console.log(data.data);
+                    let totale=0;
+                    for(let i=0;i<data.data.length;i++){
+                        totale +=data.data[i].prezzoTot;
+                    }
+                     alert(totale);
+
+                     let getMail = sendRequestNoCallback("/api/getMail","POST",{utente:username});
+                     getMail.done(function(data){
+                        console.log(data.data);
+                        let email = data.data[0].Email;
+                        alert(email);
+                        let sendMail = sendRequestNoCallback("/api/invioMail","POST",{Mail:email,total:totale});
+                        sendMail.done(function(data){
+                            alert("Mail inviata!!");
+                        });
+                     });
+                });
+
+            });
             btn.html("ORDINE PRONTO");
             td10.append(btn);
             tr.append(td10);

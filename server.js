@@ -159,6 +159,7 @@ app.get('/logout', (req, res)=>{
     res.redirect('index.html');
 })
 
+
 app.get('/api/CaricaPezzi', function (req, res, next) {
     MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
         if (err)
@@ -217,6 +218,101 @@ app.get('/api/caricaPanini', function (req, res, next) {
                 }
             });
             client.close();
+        }
+    });
+});
+
+app.post('/api/salvaMail',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('Users');
+            let mail = req.body.Mail;
+            let user = req.body.utente;
+            collection.insertOne({idUtente:user,Email:mail}), function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            }
+            client.close();
+        }
+    });
+});
+
+app.post('/api/checkMail',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('Users');
+            let mail = req.body.Mail;
+            collection.find({Email:mail}).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
+app.post('/api/getMail',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('Users');
+            let username = req.body.utente;
+            console.log(username);
+            collection.find({idUtente:username}).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
+app.post('/api/invioMail',checkAuthenticated, function (req, res, next) {
+    let nodemailer=require("nodemailer");
+    let transport=nodemailer.createTransport({
+        service: 'gmail',
+        auth:{
+            user: "anselbar212@gmail.com",
+            pass: "Anselbar11"
+        }
+    });
+    let modCSS=require("./w3css.js");
+    let bodyHtml="<html><head> <style>"+modCSS.w3css+"</style> </head><body class='w3-container w3-amber'><br /><br /><br /><div class='w3-container w3-display-container'><span class='w3-tag w3-xlarge w3-padding w3-red w3-display-middle' style='transform:rotate(-7deg)'>Attenzione!</span></div><br /><br /><br /><br /><h1 class='w3-panel w3-pale-yellow w3-border w3-panel w3-border w3-round-xlarge'>Mail spedita tramite sever web node!</h1> <h3>Mail simulata tramite l uso di gmail</h3></body></html>";
+    const message={
+        from: "anselbar212@gmail.com",
+        to: req.body.Mail,
+        subject: "Mail di prova da node",
+        //text: "Mail spedita tramite sever web node!"
+        html:bodyHtml
+    };
+    transport.sendMail(message,function (err,info) {  
+        if(err){
+            console.log(err);
+            res.end("Errore di invio mail");
+        }
+        else{
+            console.log(info);
+            res.end(JSON.stringify(info));
         }
     });
 });
