@@ -31,6 +31,11 @@ $(document).ready(function(){
         window.location.href = "storico.html"
     });
 
+    $("#insProd").on("click",function(){
+
+        window.location.href = "inserisciProdottiA.html";
+    });
+
     let getUtente = sendRequestNoCallback("/getuser","GET");
     getUtente.done(function(user){
         if(user.name == "Ansel Bar"){

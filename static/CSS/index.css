@@ -42,3 +42,44 @@
     background-color: black;
     color: white;
 }
+
+#divFoto{
+    height: 70px;
+    margin-bottom: 2%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#imgDiv{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#divDescrizione{
+    height: 70px;
+    margin-bottom: 2%;
+    text-align: center;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+#divTipo{
+    height: 70px;
+    margin-bottom: 2%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#divPrezzo{
+    height: 70px;
+    margin-bottom: 2%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#divBtnModifica{
+    height: 70px;
+    margin-bottom: 2%;
+    text-align: center;
+    border: 1px solid black;
+}
