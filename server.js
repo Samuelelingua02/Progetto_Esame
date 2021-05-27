@@ -50,10 +50,10 @@ const credentials = {"key":privateKey, "cert":certificate};
 // avvio server
 const TIMEOUT = 300; // 60 SEC
 let pageNotFound;
-const PORT = 1337;
+const PORT = process.env.PORT || 1337;
 
 var httpsServer = HTTPS.createServer(credentials, app);
-httpsServer.listen(PORT, '127.0.0.1', function() {
+app.listen(PORT, 'localhost', function() {
     fs.readFile("./static/error.html", function(err, content) {
         if (err)
             content = "<h1>Risorsa non trovata</h1>"
