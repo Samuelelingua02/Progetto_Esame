@@ -1,4 +1,3 @@
-"use strict"
 $(document).ready(function(){
     let getUser = sendRequestNoCallback("/getuser","GET");
     getUser.done(function(user){
@@ -19,16 +18,6 @@ $(document).ready(function(){
         img.attr("class","rounded");
         h3.append(img);
         $("#idLogin").hide();
-    });
-
-    let btnVisualizza = $("#visOrdini");
-    btnVisualizza.on("click",function(){
-        window.location.href = "visOrdini.html";
-    });
-
-    let btnStorico = $("#stOrdini");
-    btnStorico.on("click",function(){
-        window.location.href = "storico.html"
     });
 
     let getUtente = sendRequestNoCallback("/getuser","GET");

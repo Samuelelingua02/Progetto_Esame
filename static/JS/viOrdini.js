@@ -26,6 +26,22 @@ $(document).ready(function(){
         //alert("Dio merda i prodotti!!");
         loadTable(data.data);
     });
+
+    let getUtente = sendRequestNoCallback("/getuser","GET");
+    getUtente.done(function(user){
+        if(user.name == "Ansel Bar"){
+            let ul = $("#drop");
+            //alert("Salve adminnn!!!");
+            //window.location.href = "admin.html";
+            let li = $("<li></li>");
+            let a = $("<a></a>");
+            a.attr("class","dropdown");
+            a.attr("href","admin.html");
+            a.html("AMMINISTRAZIONE");
+            ul.append(li);
+            li.append(a);
+        }
+    })
     
 });
 let utenti = new Array();
