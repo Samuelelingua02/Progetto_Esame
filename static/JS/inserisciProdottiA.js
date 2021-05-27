@@ -120,16 +120,21 @@ function caricaProdotti(data){
 
         let btn = $("<button></button>");
         btn.attr("class","btn btn-outline-secondary");
-        btn.attr("type","submit");
+        btn.attr("type","button");
         btn.attr("id",data[j]._id);
+        btn.attr("data-toggle","modal");
+        btn.attr("data-target","#exampleModal");
         btn.html("Modifica Prodotto");
         btn.on("click",function(){
-            alert("Il mio id è: "+this.id);
+            //alert("Il mio id è: "+this.id);
+            let getEdit = sendRequestNoCallback("/api/getEdit","POST",{Id:this.id});
+            getEdit.done(function(data){
+                console.log(data.data);
+                //alert(data.data[0].descrizione);
+            });
         });
         div5.append(btn);
         divIniziale.append(div5);
-
-        
     }
 }
 
@@ -179,6 +184,8 @@ function caricaPanini(data){
         btn.attr("class","btn btn-outline-secondary");
         btn.attr("type","submit");
         btn.attr("id",data[j]._id);
+        btn.attr("data-toggle","modal");
+        btn.attr("data-target","#exampleModal");
         btn.html("Modifica Prodotto");
         btn.on("click",function(){
             alert("Il mio id è: "+this.id);
@@ -235,6 +242,8 @@ function caricaDolci(data){
         btn.attr("class","btn btn-outline-secondary");
         btn.attr("type","submit");
         btn.attr("id",data[j]._id);
+        btn.attr("data-toggle","modal");
+        btn.attr("data-target","#exampleModal");
         btn.html("Modifica Prodotto");
         btn.on("click",function(){
             alert("Il mio id è: "+this.id);
@@ -291,6 +300,8 @@ for(let j=0;j<data.length;j++){
     btn.attr("class","btn btn-outline-secondary");
     btn.attr("type","submit");
     btn.attr("id",data[j]._id);
+    btn.attr("data-toggle","modal");
+    btn.attr("data-target","#exampleModal");
     btn.html("Modifica Prodotto");
     btn.on("click",function(){
         alert("Il mio id è: "+this.id);

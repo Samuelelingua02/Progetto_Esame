@@ -127,7 +127,38 @@
 
         </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modifica</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <input class="form-control" type="text" placeholder="Readonly input here…" readonly id="txtID">
+            <div class="input-group input-group-sm mb-3" style="margin: 0 auto;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Descrizione</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+              <div class="input-group input-group-sm mb-3" style="margin: 0 auto;">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm2">Tipo</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+          <button type="button" class="btn btn-primary">Salva le Modifiche</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
         <!--footer-->
