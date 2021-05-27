@@ -2,7 +2,7 @@
 const fs = require('fs');
 const ERRORS = require('errors');
 const cookieParser = require('cookie-parser')
-const HTTPS = require('https');
+//const HTTPS = require('https');
 
 // code 600 - database connection error
 ERRORS.create({
@@ -43,16 +43,16 @@ const CLIENT_ID = '759412275936-lgq1qlsiq1ap6s9b1j7punmemeacdtig.apps.googleuser
 const client = new OAuth2Client(CLIENT_ID);
 
 // Online RSA Key Generator
-const privateKey = fs.readFileSync("keys/private.key", "utf8");
-const certificate = fs.readFileSync("keys/certificate.crt", "utf8");
-const credentials = {"key":privateKey, "cert":certificate};
+//const privateKey = fs.readFileSync("keys/private.key", "utf8");
+//const certificate = fs.readFileSync("keys/certificate.crt", "utf8");
+//const credentials = {"key":privateKey, "cert":certificate};
 
 // avvio server
 const TIMEOUT = 300; // 60 SEC
 let pageNotFound;
 const PORT = process.env.PORT || 1337;
 
-var httpsServer = HTTPS.createServer(credentials, app);
+//var httpsServer = HTTPS.createServer(credentials, app);
 app.listen(PORT, 'localhost', function() {
     fs.readFile("./static/error.html", function(err, content) {
         if (err)
