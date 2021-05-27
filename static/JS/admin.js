@@ -5,7 +5,9 @@ $(document).ready(function(){
         console.log(user);
         let h3 = $("#h3");
         h3.html("Sei loggato come "+user.name+" - ");
-        let li = $("#idLogin");
+        let ul = $("#ul");
+        let li = $("<li></li>");
+        ul.append(li);
         let a = $("<a></a>");
         a.attr("href","/logout");
         a.html("LOGOUT");
@@ -16,6 +18,7 @@ $(document).ready(function(){
         img.attr("height","50px");
         img.attr("class","rounded");
         h3.append(img);
+        $("#idLogin").hide();
     });
 
     let btnVisualizza = $("#visOrdini");

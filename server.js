@@ -290,14 +290,15 @@ app.post('/api/getMail',checkAuthenticated, function (req, res, next) {
 app.post('/api/invioMail',checkAuthenticated, function (req, res, next) {
     let nodemailer=require("nodemailer");
     let transport=nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.mailtrap.io",
+        port:"2525",
         auth:{
-            user: "anselbar212@gmail.com",
-            pass: "Anselbar11"
+            user: "b5d03aff30be68",
+            pass: "204f93132eb0ba"
         }
     });
     let modCSS=require("./w3css.js");
-    let bodyHtml="<html><head> <style>"+modCSS.w3css+"</style> </head><body class='w3-container w3-amber'><br /><br /><br /><div class='w3-container w3-display-container'><span class='w3-tag w3-xlarge w3-padding w3-red w3-display-middle' style='transform:rotate(-7deg)'>Attenzione!</span></div><br /><br /><br /><br /><h1 class='w3-panel w3-pale-yellow w3-border w3-panel w3-border w3-round-xlarge'>Mail spedita tramite sever web node!</h1> <h3>Mail simulata tramite l uso di gmail</h3></body></html>";
+    let bodyHtml="<html><head> <style>"+modCSS.w3css+"</style> </head><body class='w3-container w3-amber'><br /><br /><br /><div class='w3-container w3-display-container'><span class='w3-tag w3-xlarge w3-padding w3-red w3-display-middle' style='transform:rotate(-7deg)'>Attenzione!</span></div><br /><br /><br /><br /><h1 class='w3-panel w3-pale-yellow w3-border w3-panel w3-border w3-round-xlarge'>Il totale da pagare è :</h1> <h3>Il tuo ordine è pronto vai a ritirare</h3></body></html>";
     const message={
         from: "anselbar212@gmail.com",
         to: req.body.Mail,
