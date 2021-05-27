@@ -131,6 +131,7 @@ function caricaProdotti(data){
             getEdit.done(function(data){
                 console.log(data.data);
                 //alert(data.data[0].descrizione);
+                caricaForm(data.data);
             });
         });
         div5.append(btn);
@@ -310,4 +311,16 @@ for(let j=0;j<data.length;j++){
     divIniziale.append(div5);
 }
 
+}
+
+function caricaForm(data){
+    let idForm = $("#txtID");
+    let descForm = $("#desc");
+    let tipoForm = $("#tipo");
+    let prezForm = $("#prez1");
+
+    idForm.val(data[0]._id);
+    descForm.val(data[0].descrizione);
+    tipoForm.val(data[0].tipo);
+    prezForm.val(data[0].prezzo);
 }

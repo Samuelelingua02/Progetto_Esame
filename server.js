@@ -542,7 +542,8 @@ app.post('/api/getEdit',checkAuthenticated, function (req, res, next) {
             let collection = DB.collection('prodotti');
             let id = req.body.Id;
             console.log(id);
-            collection.find({_id:id}).toArray( function (errQ, data) {
+            let ider = parseInt(id);
+            collection.find({_id:ider}).toArray( function (errQ, data) {
                 if (errQ)
                     error(req, res, new ERRORS.QUERY_EXECUTE({}));
                 else {

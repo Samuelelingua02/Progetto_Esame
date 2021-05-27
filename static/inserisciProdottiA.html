@@ -138,18 +138,24 @@
           </button>
         </div>
         <div class="modal-body">
-            <input class="form-control" type="text" placeholder="Readonly input here…" readonly id="txtID">
-            <div class="input-group input-group-sm mb-3" style="margin: 0 auto;">
+            <input class="form-control" type="text" placeholder="Readonly input here…" readonly id="txtID" style="width: 50%;margin: 0 auto;">
+            <div class="input-group input-group-sm mb-3" style="margin: 0 auto;width: 50%">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-sm">Descrizione</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="desc">
               </div>
-              <div class="input-group input-group-sm mb-3" style="margin: 0 auto;">
+              <div class="input-group input-group-sm mb-3" style="margin: 0 auto;width: 50%">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm2">Tipo</span>
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Tipo</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" id="tipo">
+              </div>
+              <div class="input-group input-group-sm mb-3" style="margin: 0 auto;width: 50%">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Prezzo</span>
+                  </div>
+                <input type="number" min="1" max="20" id="prez1" style="color: black; text-align: center; width: 120px;margin: 0 auto;">
               </div>
         </div>
         <div class="modal-footer">
