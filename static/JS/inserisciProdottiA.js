@@ -323,4 +323,19 @@ function caricaForm(data){
     descForm.val(data[0].descrizione);
     tipoForm.val(data[0].tipo);
     prezForm.val(data[0].prezzo);
+
+    let btnSave = $("#save");
+    btnSave.on("click",function(){
+        let idForm = $("#txtID").val();
+        let descForm = $("#desc").val();
+        let tipoForm = $("#tipo").val();
+        let prezForm = $("#prez1").val();
+
+        let updateProd = sendRequestNoCallback("/api/updateProd","POST",{id:idForm,descrizione:descForm,tipo:tipoForm,prezzo:prezForm});
+        updateProd.done(function(data){
+            
+            console.log(data.data);
+        });
+        window.location.reload();
+    });
 }
