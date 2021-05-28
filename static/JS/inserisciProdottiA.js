@@ -71,6 +71,8 @@ $(document).ready(function(){
                 divRow[0].innerHTML = " ";
                 caricaBevande(data.data);
             });
+        }else if(selectValue == "tutto"){
+            window.location.reload();
         }
     });
 });
@@ -189,7 +191,13 @@ function caricaPanini(data){
         btn.attr("data-target","#exampleModal");
         btn.html("Modifica Prodotto");
         btn.on("click",function(){
-            alert("Il mio id è: "+this.id);
+            //alert("Il mio id è: "+this.id);
+            let getEdit = sendRequestNoCallback("/api/getEdit","POST",{Id:this.id});
+            getEdit.done(function(data){
+                console.log(data.data);
+                //alert(data.data[0].descrizione);
+                caricaForm(data.data);
+            });
         });
         div5.append(btn);
         divIniziale.append(div5);
@@ -247,7 +255,13 @@ function caricaDolci(data){
         btn.attr("data-target","#exampleModal");
         btn.html("Modifica Prodotto");
         btn.on("click",function(){
-            alert("Il mio id è: "+this.id);
+            //alert("Il mio id è: "+this.id);
+            let getEdit = sendRequestNoCallback("/api/getEdit","POST",{Id:this.id});
+            getEdit.done(function(data){
+                console.log(data.data);
+                //alert(data.data[0].descrizione);
+                caricaForm(data.data);
+            });
         });
         div5.append(btn);
         divIniziale.append(div5);
@@ -305,7 +319,13 @@ for(let j=0;j<data.length;j++){
     btn.attr("data-target","#exampleModal");
     btn.html("Modifica Prodotto");
     btn.on("click",function(){
-        alert("Il mio id è: "+this.id);
+        //alert("Il mio id è: "+this.id);
+        let getEdit = sendRequestNoCallback("/api/getEdit","POST",{Id:this.id});
+        getEdit.done(function(data){
+            console.log(data.data);
+            //alert(data.data[0].descrizione);
+            caricaForm(data.data);
+        });
     });
     div5.append(btn);
     divIniziale.append(div5);
