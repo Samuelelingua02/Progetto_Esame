@@ -587,6 +587,58 @@ app.post('/api/updateProd',checkAuthenticated, function (req, res, next) {
     });
 });
 
+app.post('/api/inserisciProd2',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('prodotti');
+            let id = req.body.id;
+            let descr = req.body.desc;
+            let tipo = req.body.tipo;
+            let prez = req.body.prezzo;
+            let ider = parseInt(id);
+            let prezzo = parseFloat(prez);
+            console.log(ider);
+            console.log(descr);
+            console.log(tipo);
+            console.log(prezzo);
+            collection.insertOne({"_id" : ider,"descrizione":descr,"tipo":tipo,"prezzo":prezzo,"foto":"none.jpg"}),function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            }
+            client.close();
+        }
+    });
+});
+
+app.post('/api/removeProd',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('prodotti');
+            let id = req.body.id;
+            let ider = parseInt(id);
+            collection.removeOne({"_id" : ider}),function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            }
+            client.close();
+        }
+    });
+});
+
 function checkAuthenticated(req, res, next){
 
     let token = req.cookies['session-token'];

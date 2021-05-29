@@ -75,6 +75,53 @@ $(document).ready(function(){
             window.location.reload();
         }
     });
+    let newID = 0;
+    let prezz = 0;
+    let tipo1;
+    let desc;
+    let btnIns = $("#btnIns");
+    btnIns.attr("data-toggle","modal");
+    btnIns.attr("data-target","#exampleModal1");
+    btnIns.on("click",function(){
+        let getlastID = sendRequestNoCallback("/api/getProdotti","GET");
+        getlastID.done(function(data){
+            console.log(data.data);
+            let lastID = data.data.length+1;
+            //alert(lastID);
+            newID = lastID;
+            let textid = $("#txtID1");
+            textid.val(lastID);
+        });
+        let btnSave = $("#save1");
+        btnSave.on("click",function(){
+            if($("#desc1").val() == null)
+            alert("Campo vuoto!");
+        else{
+            desc = $("#desc1").val();
+            alert(desc);
+        }
+
+        if($("#tipo1").val() == null)
+            alert("Campo vuoto!");
+        else{
+            tipo1 = $("#tipo1").val();
+            alert(tipo1);
+        }
+
+        if($("#prez12").val() == null)
+            alert("Campo vuoto!");
+        else{
+            prezz = $("#prez12").val();
+            alert(prezz);
+        }
+                
+        let inserisci = sendRequestNoCallback("/api/inserisciProd2","POST",{id:newID,desc:desc,tipo:tipo1,prezzo:prezz});
+        inserisci.done(function(){
+
+            });
+        });
+        
+    });
 });
 
 function caricaProdotti(data){
@@ -137,6 +184,20 @@ function caricaProdotti(data){
             });
         });
         div5.append(btn);
+        let btnElimina = $("<button></button>");
+        btnElimina.attr("class","btn btn-outline-secondary");
+        btnElimina.attr("style","background-color:red");
+        btnElimina.attr("type","button");
+        btnElimina.attr("id",data[j]._id);
+        btnElimina.html("Elimina Prodotto");
+        btnElimina.on("click",function(){
+            let removeProd = sendRequestNoCallback("/api/removeProd","POST",{id:this.id});
+            removeProd.done(function(data){
+
+            });
+            window.location.reload();
+        });
+        div5.append(btnElimina);
         divIniziale.append(div5);
     }
 }
@@ -200,6 +261,21 @@ function caricaPanini(data){
             });
         });
         div5.append(btn);
+
+        let btnElimina = $("<button></button>");
+        btnElimina.attr("class","btn btn-outline-secondary");
+        btnElimina.attr("style","background-color:red");
+        btnElimina.attr("type","button");
+        btnElimina.attr("id",data[j]._id);
+        btnElimina.html("Elimina Prodotto");
+        btnElimina.on("click",function(){
+            let removeProd = sendRequestNoCallback("/api/removeProd","POST",{id:this.id});
+            removeProd.done(function(data){
+
+            });
+            window.location.reload();
+        });
+        div5.append(btnElimina);
         divIniziale.append(div5);
     }
 
@@ -264,6 +340,20 @@ function caricaDolci(data){
             });
         });
         div5.append(btn);
+        let btnElimina = $("<button></button>");
+        btnElimina.attr("class","btn btn-outline-secondary");
+        btnElimina.attr("style","background-color:red");
+        btnElimina.attr("type","button");
+        btnElimina.attr("id",data[j]._id);
+        btnElimina.html("Elimina Prodotto");
+        btnElimina.on("click",function(){
+            let removeProd = sendRequestNoCallback("/api/removeProd","POST",{id:this.id});
+            removeProd.done(function(data){
+
+            });
+            window.location.reload();
+        });
+        div5.append(btnElimina);
         divIniziale.append(div5);
     }
 
@@ -328,6 +418,20 @@ for(let j=0;j<data.length;j++){
         });
     });
     div5.append(btn);
+    let btnElimina = $("<button></button>");
+        btnElimina.attr("class","btn btn-outline-secondary");
+        btnElimina.attr("style","background-color:red");
+        btnElimina.attr("type","button");
+        btnElimina.attr("id",data[j]._id);
+        btnElimina.html("Elimina Prodotto");
+        btnElimina.on("click",function(){
+            let removeProd = sendRequestNoCallback("/api/removeProd","POST",{id:this.id});
+            removeProd.done(function(data){
+
+            });
+            window.location.reload();
+        });
+        div5.append(btnElimina);
     divIniziale.append(div5);
 }
 
