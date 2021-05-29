@@ -42,18 +42,14 @@ const {OAuth2Client} = require('google-auth-library');
 const CLIENT_ID = '759412275936-j36b15qkpndslm139qcj50dsvv449vso.apps.googleusercontent.com'
 const client = new OAuth2Client(CLIENT_ID);
 
-// Online RSA Key Generator
-const privateKey = fs.readFileSync("keys/private.key", "utf8");
-const certificate = fs.readFileSync("keys/certificate.crt", "utf8");
-const credentials = {"key":privateKey, "cert":certificate};
 
 // avvio server
 const TIMEOUT = 300; // 60 SEC
 let pageNotFound;
 const PORT = 1337 || process.env.PORT;
 
-var httpsServer = HTTPS.createServer(credentials, app);
-httpsServer.listen(PORT, function() {
+
+app.listen(PORT, function() {
     fs.readFile("./static/error.html", function(err, content) {
         if (err)
             content = "<h1>Risorsa non trovata</h1>"
