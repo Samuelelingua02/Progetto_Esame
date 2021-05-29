@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "errors": "^0.3.0",
     "gitignore": "^0.6.0",
+    "google-auth-library": "^7.1.0",
     "html": "^1.0.0",
     "nodemailer": "^6.6.1"
   },
