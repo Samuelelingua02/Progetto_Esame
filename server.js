@@ -1,50 +1,58 @@
+var express=require("express");
+var app=express();
+var PORT= process.env.PORT || 1337;
 
-// express
-const express = require("express");
-const app = express();
-const bodyParser = require('body-parser');
-
-//EJS//////
-//app.set('view engine', 'ejs');
-
-// Google Auth
-const {OAuth2Client} = require('google-auth-library');
-const CLIENT_ID = '759412275936-j36b15qkpndslm139qcj50dsvv449vso.apps.googleusercontent.com'
-const client = new OAuth2Client(CLIENT_ID);
-
-
-// avvio server
-let pageNotFound;
-const PORT = process.env.PORT || 1337;
-
-
-app.listen(PORT, function() {
-    fs.readFile("./static/error.html", function(err, content) {
-        if (err)
-            content = "<h1>Risorsa non trovata</h1>"
-        pageNotFound = content.toString();
-    });
-    console.log("Server running on port %s...",PORT);
+app.listen(PORT,function(){
+    console.log("Server running on port %s...", port);
 });
 
-// Middleware
-
-//app.set('view engine', 'ejs');
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.static('public'));
-
-// middleware
-app.use("/", bodyParser.json());
-app.use("/", bodyParser.urlencoded({ extended: true }));
-
-app.use("/", function(req, res, next) {
-    console.log(">_ " + req.method + ": " + req.originalUrl);
-    if (Object.keys(req.query).length != 0)
-        console.log("Parametri GET: " + JSON.stringify(req.query));
-    if (Object.keys(req.body).length != 0)
-        console.log("Parametri BODY: " + JSON.stringify(req.body));
+/****** inizio codice middleware ******/
+app.use(function(req,res,next){
+    var d=new Date();
+    console.log(d.toLocaleTimeString() + " >>> " + req.method + ": " + req.originalUrl);
     next();
 });
 
-app.use("/", express.static('./static'));
+/****** Inizio gestione risorse client ******/
+
+app.get("/favicon.png",function(req,res,next){
+    res.sendFile(__dirname + "/favicon.png");
+});
+
+app.get("/",function(req,res,next){
+    var page="<html>";
+    page += "<head><title>Express first app</title><link rel='icon' sizes='32x32' href='favicon.png' /></head><body>";
+    page += "<h1>Express first page</h1>";
+    page += "<form action='pag3' method='POST'>";
+    page += "<input type='submit' value='carica risorsa' />";
+    page += "</form></body></html>";
+    res.send(page);
+});
+
+app.post("/pag1",function(req,res,next){
+    var header={"Content-Type":"text/html;charset=utf-8"};
+    res.writeHead(200,header);
+    res.write("Pag 1 caricata in POST");
+    res.end('<a href="/">Torna alla home page</a>');
+});
+
+app.use("/pag2",function(req,res,next){
+    if(req.method.toLowerCase()=="get")
+        res.send("risorsa pag 2 caricata in modalità GET. <a href='/'>Torna alla home page</a>");
+    else
+        if(req.method.toLowerCase()=="post")
+            res.send("risorsa pag 2 caricata in modalità POST. <a href='/'>Torna alla home page</a>");
+});
+
+app.route("/pag3").get(function(req,res){
+        res.send("risorsa pag 3 caricata in modalità GET con app.route. <a href='/'>Torna alla home page</a>");
+    }).post(function(req,res){
+        res.send("risorsa pag 3 caricata in modalità POST con app.route. <a href='/'>Torna alla home page</a>");
+    });
+
+
+
+/* Gestione delle errore finale */
+app.use(function(req,res,next){
+    res.status(404).sendFile(__dirname + "/error.html");
+});
