@@ -38,9 +38,9 @@ const { create } = require('errors');
 //app.set('view engine', 'ejs');
 
 // Google Auth
-const {OAuth2Client} = require('google-auth-library');
-const CLIENT_ID = '759412275936-j36b15qkpndslm139qcj50dsvv449vso.apps.googleusercontent.com'
-const client = new OAuth2Client(CLIENT_ID);
+//const {OAuth2Client} = require('google-auth-library');
+//const CLIENT_ID = '759412275936-j36b15qkpndslm139qcj50dsvv449vso.apps.googleusercontent.com'
+//const client = new OAuth2Client(CLIENT_ID);
 
 
 // avvio server
