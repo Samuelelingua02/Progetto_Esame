@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
     "errors": "^0.3.0",
     "gitignore": "^0.6.0",
     "google-auth-library": "^7.1.0",
