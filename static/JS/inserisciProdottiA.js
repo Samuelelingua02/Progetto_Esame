@@ -98,27 +98,28 @@ $(document).ready(function(){
             alert("Campo vuoto!");
         else{
             desc = $("#desc1").val();
-            alert(desc);
+            //alert(desc);
         }
 
         if($("#tipo1").val() == null)
             alert("Campo vuoto!");
         else{
             tipo1 = $("#tipo1").val();
-            alert(tipo1);
+            //alert(tipo1);
         }
 
         if($("#prez12").val() == null)
             alert("Campo vuoto!");
         else{
             prezz = $("#prez12").val();
-            alert(prezz);
+            //alert(prezz);
         }
                 
         let inserisci = sendRequestNoCallback("/api/inserisciProd2","POST",{id:newID,desc:desc,tipo:tipo1,prezzo:prezz});
         inserisci.done(function(){
 
             });
+            window.location.reload();
         });
         
     });

@@ -26,7 +26,7 @@ const CONNECTION_OPTIONS = {
     //useUnifiedTopology: true
 };
 
-// express
+// express//
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
@@ -50,10 +50,10 @@ const credentials = {"key":privateKey, "cert":certificate};
 // avvio server
 const TIMEOUT = 300; // 60 SEC
 let pageNotFound;
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 1337;
 
 var httpsServer = HTTPS.createServer(credentials, app);
-app.listen(PORT, function() {
+httpsServer.listen(PORT,'127.0.0.1', function() {
     fs.readFile("./static/error.html", function(err, content) {
         if (err)
             content = "<h1>Risorsa non trovata</h1>"
