@@ -35,4 +35,6 @@ $(document).ready(function(){
             li.append(a);
         }
     })
+
+    let getOrdini = sendRequestNoCallback("");
 });

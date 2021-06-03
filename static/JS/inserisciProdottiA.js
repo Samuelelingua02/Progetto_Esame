@@ -79,6 +79,8 @@ $(document).ready(function(){
     let prezz = 0;
     let tipo1;
     let desc;
+    let immagine;
+    let immag;
     let btnIns = $("#btnIns");
     btnIns.attr("data-toggle","modal");
     btnIns.attr("data-target","#exampleModal1");
@@ -114,8 +116,15 @@ $(document).ready(function(){
             prezz = $("#prez12").val();
             //alert(prezz);
         }
+            if($("#img1").val() == null)
+                alert("Campo vuoto!");
+            else{
+                immag = $("#img1").val();
+                immagine=immag.substring(12);
+                alert(immagine);
+            }
                 
-        let inserisci = sendRequestNoCallback("/api/inserisciProd2","POST",{id:newID,desc:desc,tipo:tipo1,prezzo:prezz});
+        let inserisci = sendRequestNoCallback("/api/inserisciProd2","POST",{id:newID,desc:desc,tipo:tipo1,prezzo:prezz,img:immagine});
         inserisci.done(function(){
 
             });

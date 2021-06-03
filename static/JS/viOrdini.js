@@ -41,7 +41,7 @@ $(document).ready(function(){
             ul.append(li);
             li.append(a);
         }
-    })
+    });
     
 });
 let utenti = new Array();
@@ -249,8 +249,39 @@ function loadTable2(data,utent){
             btn.attr("class","btn btn-outline-success");
             btn.attr("id",data[i].idUtente);
             btn.on("click",function(){
-                alert(this.id);
                 let username = this.id;
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                
+                today = dd + '/' + mm + '/' + yyyy;
+                
+                let caricaStorico = sendRequestNoCallback("/api/getProducts","POST",{utente:username});
+                caricaStorico.done(function(data){
+                    console.log(data.data);
+                    let tot=0;
+                    for(let j=0;j<data.data.length;j++){
+                        
+                        tot +=data.data[j].prezzoTot;
+                    }
+                    
+                    for(let i=0;i<data.data.length;i++){
+                        alert("gazzo")
+                        let caricaStorico2 = sendRequestNoCallback("/api/caricaStorico","POST",{idUser:data.data[i].idUtente,idProd:data.data[i].idProdotto,descr:data.data[i].descrizione,qta:data.data[i].quantita,pagamentoSat:data.data[i].pagamentoSatispay,totale:tot,dataOrdine:today});
+                        caricaStorico2.done(function(data){
+                            let remove = sendRequestNoCallback("/api/removeOrder","POST",{utente:username});
+                            remove.done(function(data){
+                                console.log(data.data);
+                                window.location.reload();
+                            });
+                            console.log(data.data);
+                        });
+                    }
+                });
+
+                
+                
                 let getProducts = sendRequestNoCallback("/api/getProducts","POST",{utente:username});
                 getProducts.done(function(data){
                     console.log(data.data);
@@ -258,20 +289,21 @@ function loadTable2(data,utent){
                     for(let i=0;i<data.data.length;i++){
                         totale +=data.data[i].prezzoTot;
                     }
-                     alert(totale);
+                     //alert(totale);
 
                      let getMail = sendRequestNoCallback("/api/getMail","POST",{utente:username});
                      getMail.done(function(data){
                         console.log(data.data);
                         let email = data.data[0].Email;
-                        alert(email);
+                        //alert(email);
                         let sendMail = sendRequestNoCallback("/api/invioMail","POST",{Mail:email,total:totale});
                         sendMail.done(function(data){
                             alert("Mail inviata!!");
                         });
                      });
                 });
-
+               
+               
             });
             btn.html("ORDINE PRONTO");
             td10.append(btn);
