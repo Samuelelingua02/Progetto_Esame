@@ -7,6 +7,12 @@ License URI: http://www.themevault.net/license/
 */
 
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700');
+#imgSati:active{
+    border: 2px solid black;
+}
+#imgCash:active{
+    border: 2px solid black;
+}
 html, body {
     height: 100%;
     margin: 0;

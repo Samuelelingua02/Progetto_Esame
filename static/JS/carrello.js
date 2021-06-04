@@ -23,14 +23,16 @@ $(document).ready(function(){
         //pagamentoSatispay = false;
         let imgSati = $("#imgSati");
         imgSati.on("click",function(){
-            alert("Paga con satispay!");
+           // alert("Paga con satispay!");
             pagamentoSatispay=true;
+            //imgSati.attr("style","border:2px solid black");
         });
 
         let imgCash = $("#imgCash");
         imgCash.on("click",function(){
-            alert("Paga con cash!");
+            //alert("Paga con cash!");
             pagamentoSatispay=false;
+            //imgCash.attr("style","border:2px solid black");
         });
     });
 

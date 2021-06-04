@@ -208,7 +208,7 @@ function loadTable2(data,utent){
                     }
                     
                     for(let i=0;i<data.data.length;i++){
-                       alert("gazzo")
+                      // alert("gazzo")
                         let caricaStorico = sendRequestNoCallback("/api/caricaStorico","POST",{idUser:data.data[i].idUtente,idProd:data.data[i].idProdotto,descr:data.data[i].descrizione,qta:data.data[i].quantita,pagamentoSat:data.data[i].pagamentoSatispay,totale:tot,dataOrdine:today});
                         caricaStorico.done(function(data){
                             console.log("caricaStorico ok");
