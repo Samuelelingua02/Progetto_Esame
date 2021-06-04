@@ -165,6 +165,7 @@ function visualizza(data){
          div8.attr("class","col-sm-1");
          divRow.append(div8);
      }
+     
      let btnCheck = $("#BtnCheckout");
      btnCheck.on("click",function(qta,tot){
         
@@ -176,6 +177,7 @@ function visualizza(data){
             let tot1 = parseFloat(data[j].prezzo*qta1);
             //alert(qta1);
             //alert(tot1);
+            
 
             let caricaOrdineEffettuato = sendRequestNoCallback("/api/caricaEffettuato","POST",{idProd:idProdotto,quantita:qta1,totale:tot1,descrizione:desc,pagamento:pagamentoSatispay});
             caricaOrdineEffettuato.done(function(){

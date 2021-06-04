@@ -121,7 +121,7 @@ $(document).ready(function(){
             else{
                 immag = $("#img1").val();
                 immagine=immag.substring(12);
-                alert(immagine);
+                //alert(immagine);
             }
                 
         let inserisci = sendRequestNoCallback("/api/inserisciProd2","POST",{id:newID,desc:desc,tipo:tipo1,prezzo:prezz,img:immagine});

@@ -22,7 +22,7 @@ $(document).ready(function(){
         $("#idLogin").hide();
     });
 
-    let getProdotti = sendRequestNoCallback("/api/getProdotti","GET");
+    let getProdotti = sendRequestNoCallback("/api/getProdottiOrd","GET");
     getProdotti.done(function(data){
         console.log(data.data);
         //alert("Dio merda i prodotti!!");
@@ -51,7 +51,7 @@ function loadTable(data){
     
     for(let i=0;i<data.length;i++){
         utenti[i] = data[i].idUtente;
-        let user = data[i].idUtente;
+        //let user1 = data[i].idUtente;
     }
     let utentiGOD = new Array();
     utentiGOD = utenti.filter(function(ele, pos){//elimina i duplicati nell array

@@ -361,6 +361,49 @@ app.post('/api/caricaOrdine',checkAuthenticated, function (req, res, next) {
     });
 });
 
+app.post('/api/checkOrdine',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('ordini');
+            let prodotto = req.body.id;
+            let user = req.user;
+            collection.find({_idUtente:user.name,idProdotto:prodotto}).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
+app.post('/api/checkCarrello',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('ordini');
+            let user = req.user;
+            collection.find({_idUtente:user.name}).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
 app.get('/api/visualizzaCarrello',checkAuthenticated, function (req, res, next) {
     MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
         if (err)
@@ -485,6 +528,28 @@ app.get('/api/svuota',checkAuthenticated, function (req, res, next) {
 });
 
 app.get('/api/getProdotti',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('prodotti');
+            let user = req.user;
+            console.log(user.name);
+            collection.find().toArray( function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                    console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
+app.get('/api/getProdottiOrd',checkAuthenticated, function (req, res, next) {
     MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
         if (err)
             error(req, res,new ERRORS.DB_CONNECTION({}));

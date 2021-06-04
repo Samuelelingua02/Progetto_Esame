@@ -24,7 +24,6 @@ $(document).ready(function () {
         checkMail.done(function(data){
             console.log(data.data);
             if(data.data.length==0){
-                alert("Dio merda ho aggiunto la mail perche mancava!");
                 let email = user.email;
                 let saveMail = sendRequestNoCallback("/api/salvaMail","POST",{Mail:email,utente:user.name});
                 saveMail.done(function(data){
@@ -325,8 +324,18 @@ function caricaProd(data){
 
 }
 function aggiungiOrdine(id,dati){
-    let ordina = sendRequestNoCallback("/api/caricaOrdine","POST",{id:id});
-    ordina.done(function(data){
-        alert("Operazione effetuata!!");
+    let checkOrdine = sendRequestNoCallback("/api/checkOrdine","POST",{id:id});
+    checkOrdine.done(function(data){
+        console.log(data.data);
+        if(data.data.length == 0){
+            let ordina = sendRequestNoCallback("/api/caricaOrdine","POST",{id:id});
+            ordina.done(function(data){
+            alert("Operazione effetuata!!");
+        });
+        }else{
+            alert("Prodotto gia presente nel carrello!!");
+        }
+        
     });
+   
 }
