@@ -36,5 +36,8 @@ $(document).ready(function(){
         }
     })
 
-    let getOrdini = sendRequestNoCallback("");
+    let getOrdini = sendRequestNoCallback("/api/getStorico","POST");
+    getOrdini.done(function(data){
+        console.log(data.data);
+    });
 });
