@@ -651,9 +651,9 @@ app.post('/api/caricaStorico',checkAuthenticated, function (req, res, next) {
             let pagamento = req.body.pagamentoSat;
             let dataO = req.body.dataOrdine;
             let prod = parseInt(prodotto);
-            collection.insertOne({idUtente:user,idProdotto:prod,quantita:parseInt(quantita),totale:parseFloat(totale),descrizione:descrizione,pagamentoSatispay:pagamento,dataOrdine:dataO}), function (errQ, data) {
+            collection.insertMany([{idUtente:user,idProdotto:prod,quantita:parseInt(quantita),totale:parseFloat(totale),descrizione:descrizione,pagamentoSatispay:pagamento,dataOrdine:dataO}]), function (errQ, data) {
                 if (errQ)
-                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                error(req, res, new ERRORS.QUERY_EXECUTE({}));
                 else {
                     res.send({"data":"OK"});
                     console.log(data);
@@ -673,7 +673,7 @@ app.post('/api/removeOrder',checkAuthenticated, function (req, res, next) {
             let collection = DB.collection('OrdiniEffettuati');
             let id = req.body.utente;
             console.log(id);
-            collection.deleteMany({idUtente : id}),function (errQ, data) {
+            collection.remove({idUtente : id}),function (errQ, data) {
                 if (errQ)
                     error(req, res, new ERRORS.QUERY_EXECUTE({}));
                 else {
@@ -701,6 +701,28 @@ app.post('/api/getStorico',checkAuthenticated, function (req, res, next) {
                 else {
                     res.send({"data":data});
                     console.log(data);
+                }
+            });
+            client.close();
+        }
+    });
+});
+
+app.post('/api/getStorico2',checkAuthenticated, function (req, res, next) {
+    MONGO_CLIENT.connect(CONNECTION_STRING,CONNECTION_OPTIONS, function (err, client) {
+        if (err)
+            error(req, res,new ERRORS.DB_CONNECTION({}));
+        else {
+            const DB = client.db('Bar');
+            let collection = DB.collection('storicoOrdini');
+            let id = req.body.utente;
+            console.log(id);
+            collection.find({idUtente:id}).toArray(function (errQ, data) {
+                if (errQ)
+                    error(req, res, new ERRORS.QUERY_EXECUTE({}));
+                else {
+                    res.send({"data":data});
+                   //console.log(data);
                 }
             });
             client.close();

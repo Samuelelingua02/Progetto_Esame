@@ -1,3 +1,5 @@
+//const { Alert } = require("bootstrap");
+
 $(document).ready(function(){
     let getUser = sendRequestNoCallback("/getuser","GET");
     getUser.done(function(user){
@@ -70,6 +72,8 @@ function loadTable(data){
 
 function loadTable2(data,utent){
     let j=0;
+
+    
     for(let i=0;i<data.length;i++){
         //alert(data[i].descrizione);
         j++;
@@ -108,6 +112,10 @@ function loadTable2(data,utent){
             let td8 = $("<td></td>");
             td8.html(parseFloat(data[i].prezzoTot).toFixed(2)+"€");
             tr1.append(td8);
+
+            let td10 = $("<td></td>");
+            td10.attr("width","138px");
+            tr1.append(td10);
     
             tbody.append(tr1);
             table.append(tbody);
@@ -200,8 +208,15 @@ function loadTable2(data,utent){
                     }
                     
                     for(let i=0;i<data.data.length;i++){
-                       // alert("gazzo")
-                        sendRequest("/api/caricaStorico","POST",{idUser:data.data[i].idUtente,idProd:data.data[i].idProdotto,descr:data.data[i].descrizione,qta:data.data[i].quantita,pagamentoSat:data.data[i].pagamentoSatispay,totale:tot,dataOrdine:today},caricaRimuovi(username));
+                       alert("gazzo")
+                        let caricaStorico = sendRequestNoCallback("/api/caricaStorico","POST",{idUser:data.data[i].idUtente,idProd:data.data[i].idProdotto,descr:data.data[i].descrizione,qta:data.data[i].quantita,pagamentoSat:data.data[i].pagamentoSatispay,totale:tot,dataOrdine:today});
+                        caricaStorico.done(function(data){
+                            console.log("caricaStorico ok");
+                            caricaRimuovi(username);
+                        });
+                        caricaStorico.fail(function(a,b,c){
+                            console.log(a,b,c);
+                        });
                         
                     }
                 });

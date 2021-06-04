@@ -32,7 +32,13 @@
 .btnEliminaCarrello:hover{
     background-color: #e01931;
 }
-
+#RowRiga{
+    border-top: 1px solid #2B2D2D;
+    background-color: bisque;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 2%;
+}
 
 /*#myModal{
     background-color: azure;
@@ -83,3 +89,4 @@
     text-align: center;
     border: 1px solid black;
 }
+

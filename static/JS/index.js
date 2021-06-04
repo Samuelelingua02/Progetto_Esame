@@ -72,13 +72,18 @@ $(document).ready(function () {
             for(let j=0;j<data.data.length;j++){
                    // divVuoto.replaceWith(divRow);
                     let divIniziale = $("<div></div>");
+
                     divIniziale.attr("class","col-lg-3 col-md-3 col-sm-4 col-xs-12");
                     divRow.append(divIniziale);
+
+                    let divRiga = $("<div></div>");
+                    divRiga.attr("class","row");
                     let div = $("<div></div>");
                     div.attr("id","card");
-                    div.attr("width","220px");
-                    div.attr("height","360px");
-                    divIniziale.append(div);
+                    div.attr("width","50%");
+                    div.attr("height","50%");
+                    divIniziale.append(divRiga);
+                    divRiga.append(div);
                     let div2 = $("<div></div>");
                     div2.attr("class","food-image");
                     div.append(div2);
@@ -98,7 +103,7 @@ $(document).ready(function () {
                     img1.attr("alt","CARD IMAGE");
                     img1.attr("class","img-responsive");
                     img1.attr("src","images/Home/"+data.data[j].foto);
-                    img1.attr("style","display: none");
+                    img1.attr("style","display: none;");
                     a.append(img1);
                     let i = $("<i></i>");
                     i.attr("aria-hidden","true");
