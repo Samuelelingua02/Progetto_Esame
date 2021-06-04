@@ -119,7 +119,7 @@ function loadTable(data){
         table.append(tbody);*/
     }
     let utentiGOD = new Array();
-    utentiGOD = utenti.filter(function(ele, pos){
+    utentiGOD = utenti.filter(function(ele, pos){//elimina i duplicati nell array
         return utenti.indexOf(ele) == pos;
     });
     //alert("Array filtrato: "+utentiGOD);
@@ -267,16 +267,9 @@ function loadTable2(data,utent){
                     }
                     
                     for(let i=0;i<data.data.length;i++){
-                        alert("gazzo")
-                        let caricaStorico2 = sendRequestNoCallback("/api/caricaStorico","POST",{idUser:data.data[i].idUtente,idProd:data.data[i].idProdotto,descr:data.data[i].descrizione,qta:data.data[i].quantita,pagamentoSat:data.data[i].pagamentoSatispay,totale:tot,dataOrdine:today});
-                        caricaStorico2.done(function(data){
-                            let remove = sendRequestNoCallback("/api/removeOrder","POST",{utente:username});
-                            remove.done(function(data){
-                                console.log(data.data);
-                                window.location.reload();
-                            });
-                            console.log(data.data);
-                        });
+                       // alert("gazzo")
+                        sendRequest("/api/caricaStorico","POST",{idUser:data.data[i].idUtente,idProd:data.data[i].idProdotto,descr:data.data[i].descrizione,qta:data.data[i].quantita,pagamentoSat:data.data[i].pagamentoSatispay,totale:tot,dataOrdine:today},caricaRimuovi(username));
+                        
                     }
                 });
 
@@ -314,4 +307,14 @@ function loadTable2(data,utent){
         }
         
     }
+}
+
+function caricaRimuovi(username){
+    //alert("Eliminato god!!");
+    let remove = sendRequestNoCallback("/api/removeOrder","POST",{utente:username});
+    remove.done(function(data){
+        console.log(data.data);
+       
+    });
+    window.location.reload();
 }
